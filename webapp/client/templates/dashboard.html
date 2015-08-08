@@ -1,4 +1,13 @@
 <template name="dashboard">
-  {{!-- search bar --}}
-  {{!-- a bunch of boxes holding the different rooms --}}
+	<input type="text" name="room_search" id="room_search"><br>
+
+	{{#each rooms}}
+		{{> roomIcon}}
+	{{/each}}
+</template>
+
+<template name="roomIcon">
+	<div class="room_icon">
+		<p>{{name}}</p>
+	</div>
 </template>
