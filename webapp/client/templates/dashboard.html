@@ -18,13 +18,17 @@
 </template>
 
 <template name="addView">
-	<div class="room_icon">
 		{{#if hasClicked}}
       {{!-- do stuff here --}}
-			<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
-			<button>Add Room</button>
+			<div class="add_room_box">
+				<form id="add_room">
+					<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
+					<input type="submit">
+				</form>
+			</div>
 		{{else}}
-			<p id="add_icon" class="room_text">+</p>
+			<div class="room_icon">
+				<p id="add_icon" class="room_text">+</p>
+			</div>
 		{{/if}}
-	</div>
 </template>

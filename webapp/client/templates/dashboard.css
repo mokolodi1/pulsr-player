@@ -6,19 +6,28 @@
 	font-size: 30px;
 }
 
-.room_container {
+#room_container {
+	display: flex;
 	flex-flow: row wrap;
+	align-content: flex-start;
 }
 
 .room_icon {
+	height: 80px;
+	margin: auto;
+	font-size: 30px;
+	background: #ff5555;
+}
+
+.add_room_box {
 	display: flex;
-	width: 80px;
+	width: 200px;
+	font-size: 30px;
 	background: #ff5555;
 }
 
 .room_text {
 	color: white;
-	font-size: 30px;
 	text-align: center;
 	width: 100px;
 }

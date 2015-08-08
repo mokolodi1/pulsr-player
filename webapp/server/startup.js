@@ -1,4 +1,4 @@
-function createDuration(hours, minutes, seconds) {
+/*function createDuration(hours, minutes, seconds) {
   return new Date(0, 0, 0, 0, 0, hours, minutes, seconds);
 }
 
@@ -51,4 +51,4 @@ Meteor.startup(function () {
       "duration": createDuration(0, 3, 45),
     });
   }
-});
+});*/
