@@ -1,13 +1,29 @@
 <template name="dashboard">
-	<input type="text" name="room_search" id="room_search"><br>
+	<div id="search_field">
+		<input type="text" name="room_search" id="room_search"><br>
+	</div>
 
-	{{#each rooms}}
-		{{> roomIcon}}
-	{{/each}}
+	<div id="room_container">
+		{{#each rooms}}
+			{{> roomIcon}}
+		{{/each}}
+		{{> addView}}
+	</div>
 </template>
 
 <template name="roomIcon">
 	<div class="room_icon">
-		<p>{{name}}</p>
+		<p class="room_text">{{name}}</p>
+	</div>
+</template>
+
+<template name="addView">
+	<div class="room_icon">
+		{{#if showAddForm}}
+			<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
+			<button>Add Room</button>
+		{{else}}
+			<p id="add_icon" class="room_text">+</p>
+		{{/if}}
 	</div>
 </template>

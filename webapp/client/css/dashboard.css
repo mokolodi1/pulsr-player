@@ -1,0 +1,24 @@
+#search_field {
+	text-align: center;
+}
+
+#room_search {
+	font-size: 30px;
+}
+
+.room_container {
+	flex-flow: row wrap;
+}
+
+.room_icon {
+	display: flex;
+	width: 80px;
+	background: #ff5555;
+}
+
+.room_text {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	width: 100px;
+}
