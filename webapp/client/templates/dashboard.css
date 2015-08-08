@@ -13,15 +13,13 @@
 }
 
 .room_icon {
-	height: 80px;
 	margin: auto;
 	font-size: 30px;
 	background: #ff5555;
 }
 
 .add_room_box {
-	display: flex;
-	width: 200px;
+	margin: auto;
 	font-size: 30px;
 	background: #ff5555;
 }
@@ -29,5 +27,4 @@
 .room_text {
 	color: white;
 	text-align: center;
-	width: 100px;
 }
