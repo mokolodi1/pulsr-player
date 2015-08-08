@@ -1,0 +1,31 @@
+#dashboard_header {
+	text-align: center;
+}
+
+#room_search {
+	font-size: 30px;
+}
+
+#room_container {
+	display: flex;
+	flex-flow: row wrap;
+	align-content: flex-start;
+}
+
+.room_icon {
+	margin: auto;
+	font-size: 30px;
+	background: #ff5555;
+	min-width: 80px;
+}
+
+.add_room_box {
+	margin: auto;
+	font-size: 30px;
+	background: #ff5555;
+}
+
+.room_text {
+	color: white;
+	text-align: center;
+}
