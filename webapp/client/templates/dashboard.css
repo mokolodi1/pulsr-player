@@ -1,4 +1,4 @@
-#search_field {
+#dashboard_header {
 	text-align: center;
 }
 
@@ -16,6 +16,7 @@
 	margin: auto;
 	font-size: 30px;
 	background: #ff5555;
+	min-width: 80px;
 }
 
 .add_room_box {
