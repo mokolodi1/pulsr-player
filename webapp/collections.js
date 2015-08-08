@@ -20,10 +20,10 @@ var songsSchema = new SimpleSchema({
   "users_who_disliked": { type: [Meteor.ObjectID] },
 });
 
-Rooms = new Meteor.collection("rooms");
+Rooms = new Meteor.Collection("rooms");
 Rooms.attachSchema(roomsSchema);
 
-Songs = new Meteor.collection("songs");
+Songs = new Meteor.Collection("songs");
 Songs.attachSchema(songsSchema);
 
 // TODO: disallow updates/writes
