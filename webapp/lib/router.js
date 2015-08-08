@@ -22,31 +22,53 @@ Router.configure({
 
 Router.map(function() {
   // TODO: force to log in if not logged in already
-  // redirect to 
+  // redirect to
 
-  this.route('patientReport', {
-    path: '/PatientCare/patientReport/:patient_label',
+  this.route('loginPage', {
+    path: '/login',
+  });
+
+  this.route('dashboard', {
+    path: '/',
     waitOn: function () {
       console.log("waitOn: we'll wait for the subscriptions to be ready");
     },
-    subscriptions: function () {
-      return Meteor.subscribe("PatientReport",
-        this.params.patient_label,
-        function () {
-          console.log("loaded PatientReport subscription");
-        }
-      );
-    },
+    // subscriptions: function () {
+    //   return Meteor.subscribe("Room",
+    //     this.params.patient_label,
+    //     function () {
+    //       console.log("loaded PatientReport subscription");
+    //     }
+    //   );
+    // },
     data: function () {
-      var currentLabel = this.params.patient_label;
-      var currentReport = PatientReports.findOne({
-        "patient_label": currentLabel
-      });
-      return currentReport;
+      // TODO: if room doesn't exist...
+      return { "rooms": Rooms.find() };
     },
     onStop: function () {
-      console.log("onStop (router.js)");
+      console.log("onStop called");
     },
   });
 
+  this.route('room', {
+    path: '/room/:roomName',
+    waitOn: function () {
+      console.log("waitOn: we'll wait for the subscriptions to be ready");
+    },
+    // subscriptions: function () {
+    //   return Meteor.subscribe("Room",
+    //     this.params.patient_label,
+    //     function () {
+    //       console.log("loaded PatientReport subscription");
+    //     }
+    //   );
+    // },
+    data: function () {
+      // TODO: if room doesn't exist...
+      return Rooms.findOne({"name": this.params.roomName});
+    },
+    onStop: function () {
+      console.log("onStop called");
+    },
+  });
 });
