@@ -19,7 +19,8 @@
 
 <template name="addView">
 	<div class="room_icon">
-		{{#if showAddForm}}
+		{{#if hasClicked}}
+      {{!-- do stuff here --}}
 			<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
 			<button>Add Room</button>
 		{{else}}
