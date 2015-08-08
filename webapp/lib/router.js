@@ -30,42 +30,39 @@ Router.map(function() {
 
   this.route('dashboard', {
     path: '/',
-    waitOn: function () {
-      console.log("waitOn: we'll wait for the subscriptions to be ready");
+    subscriptions: function () {
+      return Meteor.subscribe("allRooms", function () {
+        console.log("loaded allRooms subscription");
+      });
     },
-    // subscriptions: function () {
-    //   return Meteor.subscribe("Room",
-    //     this.params.patient_label,
-    //     function () {
-    //       console.log("loaded PatientReport subscription");
-    //     }
-    //   );
-    // },
     data: function () {
-      // TODO: if room doesn't exist...
       return { "rooms": Rooms.find() };
-    },
-    onStop: function () {
-      console.log("onStop called");
     },
   });
 
   this.route('room', {
     path: '/room/:roomName',
-    waitOn: function () {
-      console.log("waitOn: we'll wait for the subscriptions to be ready");
+    subscriptions: function () {
+      return Meteor.subscribe("singleRoom",
+        this.params.roomName,
+        function () {
+          console.log("loaded singleRoom subscription");
+        }
+      );
     },
-    // subscriptions: function () {
-    //   return Meteor.subscribe("Room",
-    //     this.params.patient_label,
-    //     function () {
-    //       console.log("loaded PatientReport subscription");
-    //     }
-    //   );
-    // },
     data: function () {
       // TODO: if room doesn't exist...
-      return Rooms.findOne({"name": this.params.roomName});
+
+      var currentRoom = Rooms.findOne({"name": this.params.roomName});
+      console.log("currentRoom: ", currentRoom);
+      if (currentRoom) {
+        return {
+          "room": currentRoom,
+          "songs": Songs.find({"room_id": currentRoom._id}),
+        };
+      } else {
+        return undefined;
+      }
     },
     onStop: function () {
       console.log("onStop called");

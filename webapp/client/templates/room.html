@@ -1,4 +1,12 @@
 <template name="room">
+  {{print "room this:"}}
+	{{print this}}
+
+  {{#each songs}}
+    this is a song: {{this.name}}
+    <br />
+  {{/each}}
+
   This is a room!
   The top level object will be a room object.
 </template>

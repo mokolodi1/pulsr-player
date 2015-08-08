@@ -25,7 +25,10 @@ Meteor.startup(function () {
     });
   }
 
-  if (Rooms.find().count() === 0) {
+  //if (Rooms.find().count() === 0) {
+  if (true) {
+    Rooms.remove({});
+
     var meteorHackathonId = Rooms.insert({
       "name": "Meteor hackathon",
       "added_time": new Date(2015, 8, 8, 12, 3),
@@ -62,5 +65,17 @@ Meteor.startup(function () {
       "added_time": new Date(),
       "duration": createDuration(0, 4, 4),
     });
+
+    Songs.insert({
+      "room_id": coolCatsChillingId,
+      "name": "Nyan Cat",
+      "artist": "Nyan Cat",
+      "url": "https://www.youtube.com/watch?v=QH2-TGUlwu4",
+      "added_by_user_id": mokolodi1Id,
+      "added_time": new Date(),
+      "duration": createDuration(0, 3, 36),
+    });
+
+
   }
 });
