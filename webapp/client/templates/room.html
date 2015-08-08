@@ -1,5 +1,21 @@
-<template name="room">
-	<input type="text" id="search" placeholder="Search for a Song!" />
-	<input type="submit" value="Search" onclick="searchSongs()"/>
-	
+<template class="room" name="room">
+	<div class="header">
+		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+		<input type="submit" value="Search" onclick="searchSongs()" class="searchButton"/>
+		<div id="searchResults">
+				{{#each searchResults}}
+					{{> searchResult}}
+				{{/each}}
+		</div> 
+	</div>
+</template>
+
+<template name="searchResult">
+	<div class="listItem">
+      <img src="{{thumbnail}}" class="listThumbnail"/>
+      <div class="listInfo">
+        <h3>{{title}}</h3>
+        <h4>{{channelTitle}}</h4>
+      </div>
+    </div>
 </template>

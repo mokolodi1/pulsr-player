@@ -1,0 +1,16 @@
+.header {
+	display: flex;
+	justify-content: center;
+}
+
+.searchBar {
+	width: 500px;
+	height: 40px;
+	margin-top: 20px;
+	line-height: 40px;
+}
+
+.searchButton {
+	height: 40px;
+	margin-top: 20px;
+}
