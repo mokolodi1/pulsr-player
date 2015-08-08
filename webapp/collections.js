@@ -6,7 +6,7 @@ var roomsSchema = new SimpleSchema({
     optional: true
   },
   "current_song_id": { type: Meteor.ObjectID, optional: true },
-  "current_song_started": { type: Date, optinal: true },
+  "current_song_started": { type: Date, optional: true },
 });
 
 var songsSchema = new SimpleSchema({
