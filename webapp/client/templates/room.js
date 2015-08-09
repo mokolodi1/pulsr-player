@@ -3,8 +3,7 @@ Template.room.helpers({
 		return searchResults.get();
 	},
 	likeSum: function () {
-		return 5;
-		// return this.like_count + this.dislike_count;
+		return this.like_count + this.dislike_count;
 	},
 });
 
