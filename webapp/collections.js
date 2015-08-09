@@ -17,6 +17,14 @@ var songsSchema = new SimpleSchema({
 	"added_by_user_id": { type: Meteor.ObjectID },
 	"added_time": { type: Date },
 	"duration": { type: Date },
+	"played": {
+		type: Boolean,
+		autoValue: function() {
+			if (!this.field("played").isSet) {
+				return false;
+			}
+		},
+	},
 
   // users can only vote once for a song
   // users can only be in one of these lists
