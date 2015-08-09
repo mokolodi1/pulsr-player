@@ -89,10 +89,17 @@ Meteor.methods({
       $inc: { "like_score": 1 },
     });
   },
-  setCurrentSong: function (roomID) {
+  nextTrack: function (roomID) {
     checkLoggedIn(Meteor.userId());
 
-		var newCurrentSong = Songs.findOne({room_id: roomID, played: false}, {sort: {like_score: -1}});
+    Songs.update(Rooms.findOne(roomID).current_song_id, {
+      $set: { "played": true }
+    });
+		var newCurrentSong = Songs.findOne({
+          room_id: roomID, played: false
+        }, {
+          sort: {like_score: -1, "added_time": 1}
+        });
 		if (newCurrentSong) {
 			Rooms.update(roomID, {"$set": {
 				current_song_id: newCurrentSong._id,
@@ -105,12 +112,16 @@ Meteor.methods({
     var currentUserId = Meteor.userId();
     checkLoggedIn(currentUserId);
 
+    console.log("searchObject: ", searchObject);
+
     Songs.insert({
       "room_id": room_id,
-      "name": searchObject.title,
+      "title": searchObject.title,
       "video_id": searchObject.videoId,
       "added_by_user_id": currentUserId,
       "added_time": new Date(),
+      "thumbnail": searchObject.thumbnail,
+      "channelTitle": searchObject.channelTitle,
     });
   },
   addRoom: function (roomName) {

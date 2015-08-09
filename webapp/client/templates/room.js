@@ -29,8 +29,7 @@ Template.room.onCreated(function() {
 					yt.player.loadVideoById(yt_id, startSeconds);
 					yt.player.addEventListener('onStateChange', function(e) {
 						if (e.data == YT.PlayerState.ENDED) {
-							Songs.remove(songID);
-							Meteor.call('setCurrentSong', instance.data.room._id);
+							Meteor.call('nextTrack', instance.data.room._id);
 						}
 					});
 					instance.currentlyPlayingSong.set(songID);
@@ -65,7 +64,7 @@ Template.room.helpers({
 
 Template.room.events({
 	"click #startButton": function(event, instance) {
-		Meteor.call('setCurrentSong', instance.data.room._id);
+		Meteor.call('nextTrack', instance.data.room._id);
 	},
 	'click .searchButton': function() {
 		window.searchSongs();
