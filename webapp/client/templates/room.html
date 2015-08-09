@@ -9,13 +9,15 @@
   {{/each}}
 
 	<div class="header">
-		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-		<input type="submit" value="Search" onclick="searchSongs()" class="searchButton"/>
-		<div id="searchResults">
-				{{#each searchResults}}
-					{{> searchResult}}
-				{{/each}}
+		<div class="searchGroup">
+			<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+			<input type="submit" value="Search" class="searchButton"/>
 		</div>
+		<div id="searchResults" class="searchResults">
+			{{#each searchResults}}
+				{{> searchResult}}
+			{{/each}}
+		</div> 
 	</div>
 </template>
 

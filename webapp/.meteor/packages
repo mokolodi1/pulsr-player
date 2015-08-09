@@ -7,7 +7,6 @@
 meteor-platform
 iron:router
 hpx7:youtube-iframe-player
-accounts-ui
 accounts-password
 aldeed:simple-schema
 aldeed:collection2
