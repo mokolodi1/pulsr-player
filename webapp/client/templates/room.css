@@ -41,6 +41,7 @@
 }
 
 .searchGroupContainer {
+	margin-top: 30px;
 	display: block;
 }
 
@@ -271,6 +272,8 @@
 @media only screen and (max-device-width: 480px) {
 
 	.headerContainer {
+		display: flex;
+		justify-content: center;
 	}
 
 	#room_header {
@@ -279,11 +282,11 @@
 	}
 
 	.listInfo span {
-		font-size: 20px;;
+		font-size: 10px;;
 	}
 
 	.listInfo span span {
-		font-size: 28px;
+		font-size: 10px;
 	}
 
 	.voteButton {
@@ -291,5 +294,14 @@
 	}
 	.like_score {
 		font-size: 40px;
+	}
+
+	.dashLink {
+		position: static;
+		margin-top: 30px;
+	}
+
+	.startButton {
+		visibility: hidden;
 	}
 }
