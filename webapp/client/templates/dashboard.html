@@ -36,16 +36,14 @@
 
 <template name="addView">
 	<div class="outer_box">
-		<a class="room_box" href="#">
+		<div class="room_box">
 			{{#if hasClicked}}
-				<form id="add_room">
-					<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
-					<input type="submit">
-				</form>
+				<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name">
+				<button id="add-room-button" type="submit">Add room</button>
 			{{else}}
 				<p id="add_icon" class="room_text">+</p>
 			{{/if}}
-		</a>
+		</div>
 	</div>
 </template>
 

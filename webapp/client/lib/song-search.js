@@ -1,5 +1,4 @@
 searchResults = new ReactiveVar([]); // package is reactive-var
-//searchResults.set([])
 
 
 searchSongs = function(e) {
@@ -14,7 +13,7 @@ searchSongs = function(e) {
   // execute the request
   request.execute(function(response) {
 
-    results = []
+    results = [];
 
     response.items.forEach(function(item) {
       //console.log(item);
@@ -22,14 +21,15 @@ searchSongs = function(e) {
         id: item.id.videoId,
         title: item.snippet.title,
         channelTitle: item.snippet.channelTitle,
-        thumbnail: item.snippet.thumbnails.default.url
+        thumbnail: item.snippet.thumbnails.default.url,
+        videoId: item.id.videoId,
       });
     });
 
-    ids = []
+    ids = [];
     results.forEach(function(result) {
       ids.push(result.id);
-    })
+    });
 
     //Get view count
     var request = gapi.client.youtube.videos.list({
@@ -51,6 +51,5 @@ searchSongs = function(e) {
 
     });
     //searchResults.set(results);
-
   });
-}
+};

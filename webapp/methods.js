@@ -1,3 +1,4 @@
+// TODO: add check()s
 
 function contains(array, element) {
   return array.indexOf(element) > -1;
@@ -33,8 +34,6 @@ Meteor.methods({
         $inc: { "like_score": 1 },
       });
     }
-
-    console.log("at the end:", Songs.findOne(songId));
   },
   unupvote: function (songId) {
     var currentUserId = Meteor.userId();
@@ -50,8 +49,6 @@ Meteor.methods({
       $pull: { "users_who_liked": currentUserId },
       $inc: { "like_score": -1 },
     });
-
-    console.log("at the end:", Songs.findOne(songId));
   },
   downvote: function (songId) {
 
@@ -65,7 +62,6 @@ Meteor.methods({
     }
 
     if (contains(thisSong.users_who_liked, currentUserId)) {
-      console.log("decrease by 2");
       Songs.update(songId, {
         $pull: { "users_who_liked": currentUserId },
         $addToSet: { "users_who_disliked": currentUserId },
@@ -77,8 +73,6 @@ Meteor.methods({
         $inc: { "like_score": -1 },
       });
     }
-
-    console.log("at the end:", Songs.findOne(songId));
   },
   undownvote: function (songId) {
     var currentUserId = Meteor.userId();
@@ -94,10 +88,10 @@ Meteor.methods({
       $pull: { "users_who_disliked": currentUserId },
       $inc: { "like_score": 1 },
     });
-
-    console.log("at the end:", Songs.findOne(songId));
   },
   setCurrentSong: function (roomID) {
+    checkLoggedIn(Meteor.userId());
+
 		var newCurrentSong = Songs.findOne({room_id: roomID, played: false}, {sort: {like_score: -1}});
 		if (newCurrentSong) {
 			Rooms.update(roomID, {"$set": {
@@ -107,4 +101,24 @@ Meteor.methods({
 			Songs.update(newCurrentSong._id, {"$set": {played: true}});
 		}
 	},
+  addSong: function (searchObject, room_id) {
+    var currentUserId = Meteor.userId();
+    checkLoggedIn(currentUserId);
+
+    Songs.insert({
+      "room_id": room_id,
+      "name": searchObject.title,
+      "video_id": searchObject.videoId,
+      "added_by_user_id": currentUserId,
+      "added_time": new Date(),
+    });
+  },
+  addRoom: function (roomName) {
+    if (roomName) {
+      Rooms.insert({
+        name: roomName,
+        added_time: new Date(),
+      });;
+    }
+  }
 });

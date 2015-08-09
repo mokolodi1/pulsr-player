@@ -88,15 +88,25 @@
 	margin-top: 20px; /* does nothing... */
 }
 
-.closeSearchButtonContainer1 {
+.closeSearchButtonContainer {
 	width: 65%;
 	margin: 0 auto;
 	display: flex;
 	justify-content: flex-end;
+	margin-bottom: 5px;
 }
 
 .closeSearchButton {
+	background-image: url('/x-icon.png');
+	border-radius: 50%;
+	background-size: cover;
+	border: 0;
+	color: transparent;
 	float: right;
+}
+
+.closeSearchButton:focus {
+	outline: 0;
 }
 
 .searchResultsList {

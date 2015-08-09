@@ -13,13 +13,12 @@
     </div>
   </div>
   <div id="searchResults" class="searchResults">
+
     {{#if searchResultsExist searchResults}}
-    <div class="closeSearchButtonContainer1">
-      
+    <div class="closeSearchButtonContainer">
         <button id="closeSearchButton" class="closeSearchButton">
           X
         </button>
-      
     </div>
     {{/if}}
 
@@ -33,7 +32,7 @@
   <div class="playerContainer">
 	 {{> YTPlayer name="player"}}<br>
   </div>
-  
+
   {{#unless playlistActive}}
     <div class="buttonContainer">
       <button id="startButton" class="startButton">Start Playlist</button>
