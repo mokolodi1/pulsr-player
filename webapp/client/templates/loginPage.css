@@ -3,6 +3,14 @@
 	src: url('/space_age.ttf');
 }
 
+h1 {
+	font-size: 42px;
+}
+
+h2 {
+	font-size: 22px;
+}
+
 h1, h2 {
 	font-family: SpaceAge, sans-serif;
 }
