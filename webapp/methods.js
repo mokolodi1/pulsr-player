@@ -118,7 +118,7 @@ Meteor.methods({
       Rooms.insert({
         name: roomName,
         added_time: new Date(),
-      });;
+      });
     }
   }
 });

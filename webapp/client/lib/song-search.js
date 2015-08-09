@@ -46,7 +46,7 @@ searchSongs = function(e) {
         results[index].dislikeCount = window.numberWithCommas(item.statistics.dislikeCount);
       });
 
-      console.log(results);
+      //console.log(results);
       searchResults.set(results);
 
     });

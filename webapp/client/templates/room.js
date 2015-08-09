@@ -4,7 +4,7 @@ numberWithCommas = function(x) {
     while (pattern.test(x))
         x = x.replace(pattern, "$1,$2");
     return x;
-}
+};
 
 Template.room.onCreated(function() {
 
@@ -50,7 +50,7 @@ Template.room.helpers({
 });
 
 Template.searchResult.events({
-	'click .listItem': function(event, instance) {
+	'click .searchListItem': function(event, instance) {
 		event.preventDefault();
 		Meteor.call("addSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
