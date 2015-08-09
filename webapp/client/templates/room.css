@@ -79,6 +79,7 @@
 	background-image: url("/search-icon.png");
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position-x: -3px;
 	border: 0;
 	color: transparent;
 }
@@ -241,6 +242,11 @@
   border-right: 2px solid #79A6D1;
   padding: 5px;
   overflow: hidden;
+}
+
+.searchResultsList > .playlistItem:last-child > .playlistWidget{
+	margin-bottom: 20px;
+	border-bottom: 2px solid #79A6D1;
 }
 
 #room_header {
