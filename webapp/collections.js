@@ -13,8 +13,8 @@ var roomsSchema = new SimpleSchema({
 var songsSchema = new SimpleSchema({
 	"room_id": { type: Meteor.ObjectID },
 	"title": { type: String }, // aka title
-	"video_id": { type: String },
-	"soundcloud_id": { type: String },
+	"video_id": { type: String, optional: true},
+	"soundcloud_id": { type: String, optional: true },
 	"added_by_user_id": { type: Meteor.ObjectID },
 	"added_time": { type: Date },
 	"played": {

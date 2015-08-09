@@ -145,6 +145,25 @@
 	background-color: rgba(121, 166, 209, 0.8);
 }
 
+.scSearchResultsList > .scSearchListItem:last-child{
+	border-bottom: 2px solid #79A6D1;
+}
+
+.scSearchListItem {
+  background-color: rgba(121, 166, 209, 0.5);
+  position: relative;
+  cursor: pointer;
+  border-top: 2px solid #79A6D1;
+  border-left: 2px solid #79A6D1;
+  border-right: 2px solid #79A6D1;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.scSearchListItem:hover {
+	background-color: rgba(121, 166, 209, 0.8);
+}
+
 .listInfoBottom {
 	margin-top: 10px;
 }

@@ -151,9 +151,9 @@ Meteor.methods({
       "added_time": new Date(),
       "thumbnail": searchObject.thumbnail,
       "channelTitle": searchObject.username,
-      "viewCount": removeCommasIntoInt(searchObject.playCount),
-      "dislikeCount": removeCommasIntoInt(searchObject.favoriteCount),
-      "likeCount": removeCommasIntoInt(searchObject.likeCount),
+      "viewCount": searchObject.playCount,
+      "dislikeCount": searchObject.favoriteCount,
+      "likeCount": searchObject.likeCount,
     });
   },
 

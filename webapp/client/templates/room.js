@@ -31,7 +31,7 @@ Template.room.onCreated(function() {
 				//console.log("Songs.findOne(songID): ", Songs.findOne(songID));
 				var yt_id = Songs.findOne(songID).video_id;
 				if (yt_id) {
-					instance.soundcloud.set(true);
+					instance.soundcloud.set(false);
 					if (yt.ready) {
 						var startSeconds = (new Date().getTime() - data.room.current_song_started.getTime()) / 1000;
 						yt.player.loadVideoById(yt_id, startSeconds);
@@ -49,7 +49,7 @@ Template.room.onCreated(function() {
 					instance.currentlyPlayingSong.set(songID);
 				} else {
 					var sc_id = Songs.findOne(songID).soundcloud_id;
-					instance.soundcloud.set(true);
+					instance.soundcloud.set(sc_id);
 					//Start soundcloud player with current song
 				}
 			}
@@ -64,6 +64,9 @@ Template.room.helpers({
 	scSearchResults: function() {
 		return scSearchResults.get();
 	},
+	soundcloud: function() {
+		return Template.instance().soundcloud.get();
+	},
 });
 
 Template.searchResult.events({
@@ -76,6 +79,9 @@ Template.searchResult.events({
 				instance.parentTemplate(1).data.room._id);
 		searchResults.set([]);
 	},
+});
+
+Template.scSearchResult.events({
 	'click .scSearchListItem': function(event, instance) {
 		event.preventDefault();
 
@@ -83,7 +89,7 @@ Template.searchResult.events({
 
 		Meteor.call("addSCSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
-		searchResults.set([]);
+		scSearchResults.set([]);
 	}
 });
 
