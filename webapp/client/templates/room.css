@@ -1,3 +1,11 @@
+.room-background {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	z-index: -1;
+	background-image: url("room_background.jpg");
+}
+
 .playerContainer, .buttonContainer {
 	display: flex;
 	justify-content: center;
@@ -77,25 +85,25 @@
 }
 
 .searchResults {
-	margin-top: 0px; /* does nothing... */
+	margin-top: 20px; /* does nothing... */
 }
 
 .searchResultsList {
-	width: 70%;
+	width: 65%;
 	margin: 0 auto;
 }
 
 .searchResultsList > .listItem:last-child{
-	border-bottom: 2px solid #79A6D1;
+	border-bottom: 2px solid #800000;
 }
 
 .listItem {
   
   position: relative;
   cursor: pointer;   
-  border-top: 2px solid #79A6D1;
-  border-left: 2px solid #79A6D1;
-  border-right: 2px solid #79A6D1;
+  border-top: 2px solid #800000;
+  border-left: 2px solid #800000;
+  border-right: 2px solid #800000;
   padding: 5px;
 }
 

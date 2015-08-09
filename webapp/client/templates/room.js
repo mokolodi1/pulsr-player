@@ -1,4 +1,5 @@
 Template.room.onCreated(function() {
+
 	var instance = this;
 
 	instance.currentlyPlayingSong = new ReactiveVar("");
