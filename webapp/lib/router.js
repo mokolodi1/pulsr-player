@@ -42,6 +42,9 @@ Router.map(function() {
 
   this.route('room', {
     path: '/room/:roomName',
+    onWait: function () {
+      console.log("onWait method");
+    },
     subscriptions: function () {
       return Meteor.subscribe("singleRoom",
         this.params.roomName,

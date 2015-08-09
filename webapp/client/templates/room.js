@@ -21,7 +21,10 @@ Template.room.onCreated(function() {
 		var data = Template.currentData(self.view);
 		if (data) {
 			var songID = data.room.current_song_id;
-			if (songID && songID != instance.currentlyPlayingSong.get()) {
+			if (songID &&
+					songID != instance.currentlyPlayingSong.get() &&
+					Songs.findOne(songID)) {
+				//console.log("Songs.findOne(songID): ", Songs.findOne(songID));
 				var yt_id = Songs.findOne(songID).video_id;
 				console.log(yt_id);
 				if (yt.ready()) {
@@ -53,7 +56,7 @@ Template.searchResult.events({
 
 		Meteor.call("addSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
-		searchResults.set([])
+		searchResults.set([]);
 	}
 });
 
@@ -98,6 +101,19 @@ Template.songItem.events({
 			Meteor.call("undownvote", data._id);
 		} else {
 			Meteor.call("downvote", data._id);
+		}
+	},
+});
+
+Template.songItem.helpers({
+	"upvotedClass": function () {
+		if (Template.instance().data.users_who_liked.indexOf(Meteor.userId()) > -1) {
+			return "upvoted";
+		}
+	},
+	"downvotedClass": function () {
+		if (Template.instance().data.users_who_disliked.indexOf(Meteor.userId()) > -1) {
+			return "downvoted";
 		}
 	},
 });
