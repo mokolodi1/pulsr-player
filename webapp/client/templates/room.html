@@ -2,6 +2,41 @@
 
   {{print "room this:"}}
 	{{print this}}
+	<h1>{{name}}</h1><br>
+
+	{{> YTPlayer name="player"}}<br>
+
+	{{#unless playlistActive}}
+		<button id="startButton">Start Playlist</button><br>
+	{{/unless}}
+
+  <div id="songsList">
+    <ul>
+
+      {{#each songs}}
+        <li class="songItem">
+          <div>
+            <a href="#">&#x25B2;</a>
+            <a href="#">&#x25BC;</a>
+          </div>
+          <span>{{likeSum}}</span>
+          <span>{{this.name}}</span>
+        </li>
+      {{/each}}
+
+      <li class="songItem">
+        <div class="searchGroup">
+      		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+      		<input type="submit" value="Search" class="searchButton"/>
+      	</div>
+      	<div id="searchResults" class="searchResults">
+      		{{#each searchResults}}
+      			{{> searchResult}}
+      		{{/each}}
+      	</div>
+      </li>
+    </ul>
+  </div>
 
   {{#each songs}}
     this is a song: {{this.name}}
