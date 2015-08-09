@@ -1,5 +1,5 @@
 // Sets the API key and stuff
-ServiceConfiguration.configurations.update({
+ServiceConfiguration.configurations.upsert({
     service:"facebook"
 }, {
     $set: {
