@@ -8,7 +8,11 @@ Template.loginPage.events({
     Meteor.loginWithFacebook({
       requestPermissions: ['email', 'user_friends'],
     }, function(err) {
-      // TODO: Go to dashboard
+      if (err) {
+        throw err;
+      }
+      
+      Router.go("dashboard");
     });
   },
   'click #btn-user-data': function(e) {
