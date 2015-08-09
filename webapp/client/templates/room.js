@@ -51,8 +51,17 @@ Template.room.onCreated(function() {
 					var sc_id = Songs.findOne(songID).soundcloud_id;
 					console.log("sc_id:", sc_id);
 					instance.soundcloud.set(sc_id);
+					//TODO: Use something more reliable than setTimeout
+					Meteor.setTimeout(function() {
+						var widgetIframe = document.getElementById('sc-widget');
+						console.log(widgetIframe);
+						widget = SC.Widget(widgetIframe);
+						widget.bind(SC.Widget.Events.FINISH, function () {
+							Meteor.call('nextTrack', instance.data.room._id);
+						});
+					}, 2000);
 					//Start soundcloud player with current song
-				}
+				};
 			}
 		}
 	});
