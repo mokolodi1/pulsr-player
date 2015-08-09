@@ -1,29 +1,51 @@
 <template class="room" name="room">
+	<h1>{{name}}</h1><br>
 
-  {{print "room this:"}}
-	{{print this}}
+  <div class="searchGroup">
+          <input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+          <div class="searchButtonWidget">
+            <input type="submit" value="Search" class="searchButton"/>
+            <div class="searchButtonOverlay"></div>
+          </div>
+        </div>
+        <div id="searchResults" class="searchResults">
+          {{#each searchResults}}
+            {{> searchResult}}
+          {{/each}}
+        </div>
 
-  {{#each songs}}
-    this is a song: {{this.name}}
-    <br />
-  {{/each}}
+  <div class="playerContainer">
+	 {{> YTPlayer name="player"}}<br>
+  </div>
+  
+  {{#unless playlistActive}}
+    <div class="buttonContainer">
+      <button id="startButton" class="startButton">Start Playlist</button>
+    </div>
+  {{/unless}}
 
-	<div class="header">
-		<div class="searchGroup">
-			<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-			<div class="searchButtonWidget">
-				<input type="submit" value="Search" class="searchButton"/>
-				<div class="searchButtonOverlay"> </div>
-			</div>
-		</div>
-		<div id="searchResults" class="searchResults">
-			<div class="searchResultsList">
-				{{#each searchResults}}
-					{{> searchResult}}
-				{{/each}}
-			</div>
-		</div> 
-	</div>
+  <div id="songsList">
+    <ul>
+
+      {{#each songs}}
+        <li class="songItem">
+          {{> songItem}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+</template>
+
+<template name="songItem">
+  <div>
+    <div>
+      <a href="#" class="upvote">&#x25B2;</a>
+      <a href="#" class="downvote">&#x25BC;</a>
+    </div>
+    <span>{{like_score}}</span>
+    <span>{{this.name}}</span>
+  </div>
 </template>
 
 <template name="searchResult">

@@ -1,7 +1,10 @@
 <template name="dashboard">
 
+  <video autoplay loop id="background-video" class="background-video">
+  	<source src="/dashboard_background.mp4" type="video/mp4">
+  </video>
 	{{print "dashboard this:"}}
-	{{print this}}
+	{{print this.rooms}}
 
 	<!--
 	<iframe title="Stupeflix Video Player" class="SxPlayer" src="//studio.stupeflix.com/embed/HhvZe2Yp7gW6/" width="640" height="360" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
