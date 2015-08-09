@@ -22,6 +22,15 @@ Template.addView.events({
     if (event.which === 1) { // left click
       event.preventDefault();
       instance.hasClicked.set(true);
+      // setTimeout(function () {
+      //   $("body").on("click", function (event) {
+      //     console.log(event);
+      //     //if(instance.hasClicked.get()){
+      //       console.log("clicked on tbe body");
+      //       instance.hasClicked.set(false);
+      //       $("body").unbind("click");
+      //     //}
+      //   })}, 50);
     }
   },
 	"click #add-room-button": function(event, instance) {
