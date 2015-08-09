@@ -21,26 +21,22 @@ var songsSchema = new SimpleSchema({
   // users can only vote once for a song
   // users can only be in one of these lists
   // (can't upvote and downvote the same song)
-  "like_count": {
+  "like_score": {
     type: Number,
     autoValue: function () {
-      var usersWhoLiked = this.siblingField("users_who_liked");
-      if (usersWhoLiked.value === undefined) {
+      var usersWhoLiked = this.siblingField("users_who_liked").value;
+      var usersWhoDisliked = this.siblingField("users_who_disliked").value;
+      if (usersWhoLiked === undefined &&
+          usersWhoDisliked === undefined) {
         return 0;
-      } else {
-        return usersWhoLiked.value.length;
       }
-    },
-  },
-  "dislike_count": {
-    type: Number,
-    autoValue: function () {
-      var usersWhoLiked = this.siblingField("users_who_disliked");
-      if (usersWhoLiked.value === undefined) {
-        return 0;
-      } else {
-        return usersWhoLiked.value.length;
+      if (usersWhoLiked === undefined) {
+        return -usersWhoDisliked.length;
       }
+      if (usersWhoDisliked === undefined) {
+        return usersWhoLiked.length;
+      }
+      return usersWhoLiked.length - usersWhoDisliked.length;
     },
   },
   "users_who_liked": { type: [Meteor.ObjectID], optional: true },
