@@ -64,9 +64,19 @@ Template.room.events({
 
 Template.songItem.events({
 	'click .upvote': function (event, instance) {
-		Meteor.call("upvote", instance.data._id);
+		var data = instance.data;
+		if (data.users_who_liked.indexOf(Meteor.userId()) > -1) {
+			Meteor.call("unupvote", data._id);
+		} else {
+			Meteor.call("upvote", data._id);
+		}
 	},
 	'click .downvote': function (event, instance) {
-		Meteor.call("downvote", instance.data._id);
+		var data = instance.data;
+		if (data.users_who_disliked.indexOf(Meteor.userId()) > -1) {
+			Meteor.call("undownvote", data._id);
+		} else {
+			Meteor.call("downvote", data._id);
+		}
 	},
 });

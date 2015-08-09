@@ -58,7 +58,11 @@ Router.map(function() {
       if (currentRoom) {
         return {
           "room": currentRoom,
-          "songs": Songs.find({"room_id": currentRoom._id}),
+          "songs": Songs.find({
+                "room_id": currentRoom._id
+              }, {
+                sort: {"like_score": -1, "added_time": 1}
+              }),
         };
       } else {
         return undefined;
