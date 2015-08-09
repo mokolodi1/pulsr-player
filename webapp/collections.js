@@ -17,30 +17,23 @@ var songsSchema = new SimpleSchema({
 	"added_by_user_id": { type: Meteor.ObjectID },
 	"added_time": { type: Date },
 	"duration": { type: Date },
+	"played": {
+		type: Boolean,
+		autoValue: function() {
+			if (!this.field("played").isSet) {
+				return false;
+			}
+		},
+	},
 
   // users can only vote once for a song
   // users can only be in one of these lists
   // (can't upvote and downvote the same song)
   "like_score": {
     type: Number,
-    autoValue: function () {
-      var usersWhoLiked = this.siblingField("users_who_liked").value;
-      var usersWhoDisliked = this.siblingField("users_who_disliked").value;
-      if (usersWhoLiked === undefined &&
-          usersWhoDisliked === undefined) {
-        return 0;
-      }
-      if (usersWhoLiked === undefined) {
-        return -usersWhoDisliked.length;
-      }
-      if (usersWhoDisliked === undefined) {
-        return usersWhoLiked.length;
-      }
-      return usersWhoLiked.length - usersWhoDisliked.length;
-    },
   },
-  "users_who_liked": { type: [Meteor.ObjectID], optional: true },
-  "users_who_disliked": { type: [Meteor.ObjectID], optional: true },
+  "users_who_liked": { type: [Meteor.ObjectID] },
+  "users_who_disliked": { type: [Meteor.ObjectID] },
 });
 
 Rooms = new Mongo.Collection("rooms");

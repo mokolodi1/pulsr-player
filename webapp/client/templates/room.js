@@ -26,12 +26,15 @@ Template.room.onCreated(function() {
 				var yt_id = Songs.findOne(songID).url.replace("https://www.youtube.com/watch?v=", "");
 				console.log(yt_id);
 				if (yt.ready()) {
-					yt.player.loadVideoById(yt_id);
+					var startSeconds = (new Date().getTime() - data.room.current_song_started.getTime()) / 1000;
+					yt.player.loadVideoById(yt_id, startSeconds);
 					yt.player.addEventListener('onStateChange', function(e) {
 						if (e.data == YT.PlayerState.ENDED) {
+							Songs.remove(songID);
 							Meteor.call('setCurrentSong', instance.data.room._id);
 						}
 					});
+					instance.currentlyPlayingSong.set(songID);
 				}
 			}
 		}
@@ -41,6 +44,9 @@ Template.room.onCreated(function() {
 Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
+	},
+	votingSongs: function () {
+		return Songs.find({played: false});
 	},
 });
 
@@ -66,9 +72,19 @@ Template.room.events({
 
 Template.songItem.events({
 	'click .upvote': function (event, instance) {
-		Meteor.call("upvote", instance.data._id);
+		var data = instance.data;
+		if (data.users_who_liked.indexOf(Meteor.userId()) > -1) {
+			Meteor.call("unupvote", data._id);
+		} else {
+			Meteor.call("upvote", data._id);
+		}
 	},
 	'click .downvote': function (event, instance) {
-		Meteor.call("downvote", instance.data._id);
+		var data = instance.data;
+		if (data.users_who_disliked.indexOf(Meteor.userId()) > -1) {
+			Meteor.call("undownvote", data._id);
+		} else {
+			Meteor.call("downvote", data._id);
+		}
 	},
 });
