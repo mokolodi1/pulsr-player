@@ -36,7 +36,7 @@
 
 <template name="addView">
 	<div class="outer_box">
-		<div class="room_box">
+		<a class="room_box" href="#">
 			{{#if hasClicked}}
 				<div class="room-box-edit">
 					<input type="text" id="new_room_name" placeholder="Name" />
@@ -44,7 +44,7 @@
 			{{else}}
 				<p id="add_icon" class="room_text">+</p>
 			{{/if}}
-		</div>
+		</a>
 	</div>
 </template>
 
