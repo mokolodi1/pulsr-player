@@ -39,28 +39,43 @@
     </div>
   {{/unless}}
 
-  <div id="songsList">
-    <ul>
-
+  <div id="songsList" class="songsListContainer">
+    <div class="songsList">
       {{#each votingSongs}}
-        <li class="songItem">
           {{> songItem}}
-        </li>
       {{/each}}
-    </ul>
+    </div>
   </div>
 
 </template>
 
 <template name="songItem">
-  <div>
+  <div class="searchListItem">
     <div>
-      <a href="#" class="upvote">&#x25B2;</a>
-      <a href="#" class="downvote">&#x25BC;</a>
+      <div>
+        <i class="voteButton fa fa-thumbs-up"></i>
+      </div>
+      <div>
+        <i class="voteButton fa fa-thumbs-down"></i>
+      </div>
     </div>
+    <img src="{{thumbnail}}" class="songThumbnail"/>
+    <div class="listInfo">
+      <h3>{{title}}</h3>
+      <div class="listInfoBottom">
+        <span>by </span><span class="channelTitle">{{channelTitle}}</span>
+        <div class="statisticsInfo">
+          <div><i class="fa fa-eye"></i><span class="tab">{{viewCount}}</span></div>
+          <div><i class="fa fa-thumbs-up"></i><span class="tab">{{likeCount}}</span></div>
+          <div><i class="fa fa-thumbs-down"></i><span class="tab">{{dislikeCount}}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
     <span>{{like_score}}</span>
     <span>{{this.name}}</span>
-  </div>
+
 </template>
 
 <template name="searchResult">

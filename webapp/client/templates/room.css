@@ -181,3 +181,26 @@
 	padding-right: 20px;
 }
 
+.songsListContainer {
+	display: flex;
+	justify-content: center;
+	color: white;
+}
+
+.songsList {
+	list-style-type: none;
+}
+
+.playlistItem {
+	display: flex;
+	justify-content: center;
+}
+
+.voteButton {
+	color: white;
+}
+
+.voteButton:hover {
+	color: #79A6D1;
+	cursor: pointer;
+}
