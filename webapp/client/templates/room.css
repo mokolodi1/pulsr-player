@@ -41,7 +41,7 @@
 }
 
 .searchGroupContainer {
-
+	display: block;
 }
 
 .searchGroup {
@@ -79,6 +79,7 @@
 	background-image: url("/search-icon.png");
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position-x: -3px;
 	border: 0;
 	color: transparent;
 }
@@ -243,6 +244,11 @@
   overflow: hidden;
 }
 
+.searchResultsList > .playlistItem:last-child > .playlistWidget{
+	margin-bottom: 20px;
+	border-bottom: 2px solid #79A6D1;
+}
+
 #room_header {
 	font-family: SpaceAge, sans-serif;
 	margin: 20px;
@@ -284,3 +290,30 @@
 .users-bar-right {
 	right: 0;
 }
+
+@media only screen and (max-device-width: 480px) {
+
+	.headerContainer {
+	}
+
+	#room_header {
+		font-size: 48px;
+		text-align: center;
+	}
+
+	.listInfo span {
+		font-size: 20px;;
+	}
+
+	.listInfo span span {
+		font-size: 28px;
+	}
+
+	.voteButton {
+		font-size: 50px;
+	}
+	.like_score {
+		font-size: 40px;
+	}
+}
+

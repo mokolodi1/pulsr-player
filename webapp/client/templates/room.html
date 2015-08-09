@@ -7,12 +7,11 @@
     </video>
   {{/if}}
 
-  <h1>{{name}}</h1><br>
   <div class="headerContainer">
     <a href="/" class="dashLink">
       <span id="room_header">Pulsr</span>
-    </a>
-  </div>
+		</a>
+	</div>
   <div class="searchGroupContainer">
     <div class="searchGroup">
       <input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
@@ -74,7 +73,7 @@
         <div>
           <i class="voteButton fa fa-thumbs-up upvote {{upvotedClass}}"></i>
         </div>
-        <div><span>{{like_score}}</span></div>
+        <div class="like_score"><span>{{like_score}}</span></div>
         <div>
           <i class="voteButton fa fa-thumbs-down downvote {{downvotedClass}}"></i>
         </div>
