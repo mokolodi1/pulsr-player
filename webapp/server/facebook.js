@@ -56,10 +56,8 @@ Meteor.methods({
   getProfilePicture: function() {
     var fb = new Facebook(Meteor.user().services.facebook.accessToken);
     var data = fb.getProfilePicture();
-    var updatedProfile = Meteor.user().profile;
-    updatedProfile.profilePicture = data.location;
     Meteor.users.update({_id: Meteor.userId()}, {$set: {
-      profile: updatedProfile
+      "profile.profilePicture": data.location
     }});
     return data;
   }
