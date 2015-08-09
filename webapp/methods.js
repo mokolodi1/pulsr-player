@@ -113,4 +113,12 @@ Meteor.methods({
       "added_time": new Date(),
     });
   },
+  addRoom: function (roomName) {
+    if (roomName) {
+      Rooms.insert({
+        name: roomName,
+        added_time: new Date(),
+      });;
+    }
+  }
 });

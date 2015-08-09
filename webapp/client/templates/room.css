@@ -93,32 +93,70 @@
 	margin: 0 auto;
 }
 
-.searchResultsList > .listItem:last-child{
-	border-bottom: 2px solid #800000;
+.searchResultsList > .searchListItem:last-child{
+	border-bottom: 2px solid #79A6D1;
 }
 
-.listItem {
-  
+.searchListItem {
+  background-color: rgba(121, 166, 209, 0.5);
   position: relative;
   cursor: pointer;   
-  border-top: 2px solid #800000;
-  border-left: 2px solid #800000;
-  border-right: 2px solid #800000;
+  border-top: 2px solid #79A6D1;
+  border-left: 2px solid #79A6D1;
+  border-right: 2px solid #79A6D1;
   padding: 5px;
+  overflow: hidden;
+}
+
+.searchListItem:hover {
+	background-color: rgba(121, 166, 209, 0.8);
+}
+
+.listInfoBottom {
+	margin-top: 10px;
 }
 
 .listThumbnail {
-	width: 80px;
-	height: 60px;
+	float: left;
+	width: 10%;
 	vertical-align: middle;
 }
 
 .listInfo {
-  position: absolute;
-  top: 5px;
-  left: 130px;
+  float: right;
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 85%;
 }
 
-.listInfo h3, .listInfo h4 {
+.listInfo h3{
 	margin: 0;
+	font-weight: normal;
 }
+
+
+.listInfo span {
+	font-size: 10px;
+}
+
+.listInfo span span {
+	font-size: 14px;
+}
+
+.statisticsInfo {
+	float: right;
+}
+
+.statisticsInfo > div {
+	display: inline-block;
+}
+
+.channelTitle {
+	margin-right: 10%;
+}
+
+.tab {
+	padding-right: 20px;
+}
+

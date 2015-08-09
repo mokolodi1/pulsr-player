@@ -11,12 +11,13 @@ searchSongs = function(e) {
   });
   // execute the request
   request.execute(function(response) {
-    //console.log(response);
 
     results = [];
 
     response.items.forEach(function(item) {
+      //console.log(item);
       results.push({
+        id: item.id.videoId,
         title: item.snippet.title,
         channelTitle: item.snippet.channelTitle,
         thumbnail: item.snippet.thumbnails.default.url,
@@ -24,6 +25,30 @@ searchSongs = function(e) {
       });
     });
 
-    searchResults.set(results);
+    ids = [];
+    results.forEach(function(result) {
+      ids.push(result.id);
+    });
+
+    //Get view count
+    var request = gapi.client.youtube.videos.list({
+      id: ids.join(','),
+      part: "statistics"
+    });
+
+    request.execute(function(response) {
+
+      response.items.forEach(function(item, index) {
+        console.log(item);
+        results[index].viewCount = window.numberWithCommas(item.statistics.viewCount);
+        results[index].likeCount = window.numberWithCommas(item.statistics.likeCount);
+        results[index].dislikeCount = window.numberWithCommas(item.statistics.dislikeCount);
+      });
+
+      console.log(results);
+      searchResults.set(results);
+
+    });
+    //searchResults.set(results);
   });
 };

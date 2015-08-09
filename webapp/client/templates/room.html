@@ -55,11 +55,18 @@
 </template>
 
 <template name="searchResult">
-	<div class="listItem">
+	<div class="searchListItem">
     <img src="{{thumbnail}}" class="listThumbnail"/>
     <div class="listInfo">
       <h3>{{title}}</h3>
-      <h4>{{channelTitle}}</h4>
+      <div class="listInfoBottom">
+        <span>by </span><span class="channelTitle">{{channelTitle}}</span>
+        <div class="statisticsInfo">
+          <div><i class="fa fa-eye"></i><span class="tab">{{viewCount}}</span></div>
+          <div><i class="fa fa-thumbs-up"></i><span class="tab">{{likeCount}}</span></div>
+          <div><i class="fa fa-thumbs-down"></i><span class="tab">{{dislikeCount}}</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

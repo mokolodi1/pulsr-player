@@ -25,13 +25,11 @@ Template.addView.events({
       instance.hasClicked.set(true);
     }
   },
-	"submit #add_room": function(event, instance) {
+	"click #add-room-button": function(event, instance) {
+    console.log("AAA");
     if (event.which === 1) { // left click
       event.preventDefault();
-  		Rooms.insert({
-  			name: event.target.new_room_name.value,
-  			added_time: new Date(),
-  		});
+      Meteor.call('addRoom', $('#new_room_name').val())
   		instance.hasClicked.set(false);
     }
 	}
