@@ -17,6 +17,14 @@
 	border: 2px solid #8bb;
 }
 
+#logout-link {
+	cursor: pointer;
+}
+
+#logout-link:hover {
+	text-decoration: underline;
+}
+
 #room_search {
 	font-size: 30px;
 }

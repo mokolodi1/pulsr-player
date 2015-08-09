@@ -34,5 +34,11 @@ Template.addView.events({
   		});
   		instance.hasClicked.set(false);
     }
-	},
+	}
+});
+
+Template.logoutBox.onRendered(function() {
+  $('#logout-link').click(function() {
+    Meteor.logout();
+  });
 });

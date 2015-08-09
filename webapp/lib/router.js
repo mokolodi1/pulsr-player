@@ -69,3 +69,13 @@ Router.map(function() {
     },
   });
 });
+
+var mustBeSignedIn = function(pause) {
+  if (!(Meteor.user() || Meteor.loggingIn())) {
+    Router.go('loginPage');
+  }
+
+  this.next();
+};
+
+Router.onBeforeAction(mustBeSignedIn, {except: ['loginPage']});
