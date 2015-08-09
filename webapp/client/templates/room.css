@@ -193,7 +193,7 @@
 
 .playlistItem {
 	display: flex;
-	justify-content: center;
+	align-items: center;
 }
 
 .voteButton {
@@ -203,4 +203,20 @@
 .voteButton:hover {
 	color: #79A6D1;
 	cursor: pointer;
+}
+
+.scoreWidget {
+	margin: 10px;
+}
+
+.playlistWidget {
+  width: 100%;
+  background-color: rgba(121, 166, 209, 0.5);
+  position: relative;
+  cursor: pointer;   
+  border-top: 2px solid #79A6D1;
+  border-left: 2px solid #79A6D1;
+  border-right: 2px solid #79A6D1;
+  padding: 5px;
+  overflow: hidden;
 }

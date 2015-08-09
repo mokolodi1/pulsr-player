@@ -51,6 +51,9 @@ Template.room.helpers({
 Template.searchResult.events({
 	'click .searchListItem': function(event, instance) {
 		event.preventDefault();
+
+		console.log("INSTANCE DATA = " + instance.data);
+
 		Meteor.call("addSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
 	}
