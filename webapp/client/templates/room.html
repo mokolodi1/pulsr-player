@@ -2,8 +2,13 @@
 
   {{print "room this:"}}
 	{{print this}}
+	<h1>{{name}}</h1><br>
 
-	{{> YTPlayer name="player"}}
+	{{> YTPlayer name="player"}}<br>
+
+	{{#unless playlistActive}}
+		<button id="startButton">Start Playlist</button><br>
+	{{/unless}}
 
   {{#each songs}}
     this is a song: {{this.name}}
@@ -11,7 +16,6 @@
   {{/each}}
 
 	<div class="header">
-		<h1>{{name}}</h1><br>
 		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
 		<input type="submit" value="Search" onclick="searchSongs()" class="searchButton"/>
 		<div id="searchResults">

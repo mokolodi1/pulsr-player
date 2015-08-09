@@ -8,14 +8,17 @@ Template.room.onCreated(function() {
 
 	this.autorun(function() {
 		console.log("Autorun called");
-		if (this.data) {
-			var songID = this.data.current_song_id;
-			console.log(songID);
-			var yt_id = Meteor.findOne(songId).url;
-			if (yt.ready()) {
-				yt.player.loadVideoById(yt_id);
+		var data = Template.currentData(self.view);
+		if (data) {
+			var songID = data.current_song_id;
+			if (songID) {
+				console.log(songID);
+				var yt_id = Rooms.findOne(songID).url;
+				if (yt.ready()) {
+					yt.player.loadVideoById(yt_id);
+				}
+				this.stop();
 			}
-			this.stop();
 		}
 	});
 });
@@ -24,4 +27,10 @@ Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
 	}
-})
+});
+
+Template.room.events({
+	"click startButton": function(event, instance) {
+		Meteor.call('setCurrentSong', instance.data.id);
+	},
+});
