@@ -12,25 +12,22 @@
 	align-content: flex-start;
 }
 
-.room_icon {
-	margin: auto;
+.room_box {
+	margin: 20px;
 	font-size: 30px;
 	background: #ff5555;
-	min-width: 80px;
-}
-
-.add_room_box {
-	margin: auto;
-	font-size: 30px;
-	background: #ff5555;
+	width: 300px;
+	height: 300px;
+	display: table;
 }
 
 .room_text {
 	color: white;
 	text-align: center;
+	vertical-align: middle;
+  display: table-cell;
 }
 
-.room_text a {
+.room_text p {
 	text-decoration: none;
-	color: white;
 }
