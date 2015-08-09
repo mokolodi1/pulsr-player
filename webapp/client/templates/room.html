@@ -4,11 +4,15 @@
 	{{print this}}
 	<h1>{{name}}</h1><br>
 
-	{{> YTPlayer name="player"}}<br>
-
-	{{#unless playlistActive}}
-		<button id="startButton">Start Playlist</button><br>
-	{{/unless}}
+  <div class="playerContainer">
+	 {{> YTPlayer name="player"}}<br>
+  </div>
+  
+  {{#unless playlistActive}}
+    <div class="buttonContainer">
+      <button id="startButton" class="startButton">Start Playlist</button><br>
+    </div>
+  {{/unless}}
 
   <div id="songsList">
     <ul>
@@ -22,7 +26,10 @@
       <li class="songItem">
         <div class="searchGroup">
       		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-      		<input type="submit" value="Search" class="searchButton"/>
+          <div class="searchButtonWidget">
+      		  <input type="submit" value="Search" class="searchButton"/>
+            <div class="searchButtonOverlay"></div>
+          </div>
       	</div>
       	<div id="searchResults" class="searchResults">
       		{{#each searchResults}}
