@@ -10,12 +10,11 @@ Template.room.onCreated(function() {
 	});
 
 	this.autorun(function() {
-		console.log("Autorun called");
 		var data = Template.currentData(self.view);
 		if (data) {
 			var songID = data.room.current_song_id;
 			if (songID && songID != instance.currentlyPlayingSong.get()) {
-				var yt_id = Songs.findOne(songID).url.replace("https://www.youtube.com/watch?v=", "");
+				var yt_id = Songs.findOne(songID).video_id;
 				console.log(yt_id);
 				if (yt.ready()) {
 					var startSeconds = (new Date().getTime() - data.room.current_song_started.getTime()) / 1000;
@@ -44,7 +43,9 @@ Template.room.helpers({
 
 Template.searchResult.events({
 	'click .listItem': function(event, instance) {
-		window.addSongToPlaylist(instance.data);
+		event.preventDefault();
+		Meteor.call("addSong", instance.data,
+				instance.parentTemplate(1).data.room._id);
 	}
 });
 

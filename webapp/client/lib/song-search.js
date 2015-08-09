@@ -1,5 +1,4 @@
 searchResults = new ReactiveVar([]); // package is reactive-var
-//searchResults.set([])
 
 searchSongs = function(e) {
   var request = gapi.client.youtube.search.list({
@@ -14,24 +13,17 @@ searchSongs = function(e) {
   request.execute(function(response) {
     //console.log(response);
 
-    results = []
+    results = [];
 
     response.items.forEach(function(item) {
       results.push({
         title: item.snippet.title,
         channelTitle: item.snippet.channelTitle,
-        thumbnail: item.snippet.thumbnails.default.url
+        thumbnail: item.snippet.thumbnails.default.url,
+        videoId: item.id.videoId,
       });
     });
 
     searchResults.set(results);
-
-
-
-
-    //console.log(JSON.stringify(results));
-    resultElements = []
-    results.map(function(result) {
-    });
   });
-}
+};

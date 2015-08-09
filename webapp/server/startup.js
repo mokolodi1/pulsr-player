@@ -24,42 +24,25 @@ Meteor.startup(function () {
     Songs.insert({
       "room_id": meteorHackathonId,
       "name": "Dark Horse",
-      "artist": "Katy Perry",
-      "url": "https://www.youtube.com/watch?v=0KSOMA3QBU0",
+      "video_id": "0KSOMA3QBU0",
       "added_by_user_id": "bfsTuy9ZTktFRY3qw",
       "added_time": new Date(),
-      "duration": createDuration(0, 3, 45),
-      "like_score": 0,
-      "users_who_liked": [],
-      "users_who_disliked": [],
     });
 
     Songs.insert({
       "room_id": meteorHackathonId,
       "name": "Bad Blood",
-      "artist": "Katy Perry",
-      "url": "https://www.youtube.com/watch?v=QcIy9NiNbmo",
+      "video_id": "QcIy9NiNbmo",
       "added_by_user_id": "bfsTuy9ZTktFRY3qw",
       "added_time": new Date(),
-      "duration": createDuration(0, 4, 4),
-      "like_score": 0,
-      "users_who_liked": [],
-      "users_who_disliked": [],
     });
 
     Songs.insert({
       "room_id": coolCatsChillingId,
       "name": "Nyan Cat",
-      "artist": "Nyan Cat",
-      "url": "https://www.youtube.com/watch?v=QH2-TGUlwu4",
+      "video_id": "QH2-TGUlwu4",
       "added_by_user_id": "bfsTuy9ZTktFRY3qw",
       "added_time": new Date(),
-      "duration": createDuration(0, 3, 36),
-      "like_score": 0,
-      "users_who_liked": [],
-      "users_who_disliked": [],
     });
-
-
   }
 });
