@@ -21,7 +21,10 @@ Template.room.onCreated(function() {
 		var data = Template.currentData(self.view);
 		if (data) {
 			var songID = data.room.current_song_id;
-			if (songID && songID != instance.currentlyPlayingSong.get()) {
+			if (songID &&
+					songID != instance.currentlyPlayingSong.get() &&
+					Songs.findOne(songID)) {
+				//console.log("Songs.findOne(songID): ", Songs.findOne(songID));
 				var yt_id = Songs.findOne(songID).video_id;
 				console.log(yt_id);
 				if (yt.ready()) {
