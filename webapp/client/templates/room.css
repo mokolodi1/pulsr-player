@@ -246,9 +246,9 @@
 ** These are for you!
 */
 .upvoted {
-
+	color: orange;
 }
 
 .downvoted {
-
+	color: purple;
 }

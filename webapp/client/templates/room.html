@@ -1,7 +1,11 @@
 <template class="room" name="room">
-	<video autoplay loop id="room-video" class="background-video">
-    <source src="/room_background.mp4" type="video/mp4">
-  </video>
+  {{#if isPhone}}
+    <!-- no video -->
+  {{else}}
+  	<video autoplay loop id="room-video" class="background-video">
+      <source src="/room_background.mp4" type="video/mp4">
+    </video>
+  {{/if}}
 
   <h1>{{name}}</h1><br>
   <div class="headerContainer">
@@ -35,9 +39,14 @@
     </div>
   </div>
 
-  <div class="playerContainer">
-	 {{> YTPlayer name="player"}}<br>
-  </div>
+  {{#if isPhone}}
+    <!-- no video player on mobile -->
+    <!-- NOTE: the video player actually doesn't work on my phone -->
+  {{else}}
+    <div class="playerContainer">
+	    {{> YTPlayer name="player"}}<br>
+    </div>
+  {{/if}}
 
   {{#unless hasStartedPlaying}}
     <div class="buttonContainer">
@@ -53,7 +62,6 @@
       {{/each}}
     </div>
   </div>
-
 </template>
 
 <!-- PLAYLIST TEMPLATE DESCRIPTION-->

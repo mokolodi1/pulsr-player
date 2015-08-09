@@ -17,7 +17,10 @@ Template.room.onCreated(function() {
 		width: '640'
 	});
 
+	var lastRun = new Date(2014, 1, 1);
+
 	this.autorun(function() {
+		console.log("onCreated autorun");
 		var data = Template.currentData(self.view);
 		if (data) {
 			var songID = data.room.current_song_id;
@@ -32,7 +35,12 @@ Template.room.onCreated(function() {
 					yt.player.loadVideoById(yt_id, startSeconds);
 					yt.player.addEventListener('onStateChange', function(e) {
 						if (e.data == YT.PlayerState.ENDED) {
-							Meteor.call('nextTrack', instance.data.room._id);
+
+							// hack to make it stop removing too many
+							if (new Date() - lastRun > 500) {
+								Meteor.call('nextTrack', instance.data.room._id);
+								lastRun = new Date();
+							}
 						}
 					});
 					instance.currentlyPlayingSong.set(songID);
@@ -83,7 +91,7 @@ Template.room.events({
 	},
 	'click .closeSearchButton': function() {
 		searchResults.set([]);
-	}
+	},
 });
 
 Template.songItem.events({

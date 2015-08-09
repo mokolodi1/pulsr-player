@@ -50,3 +50,7 @@ h1 {
 	height: auto;
 	z-index: -1;
 }
+
+form.login-form {
+	color:black;
+}
