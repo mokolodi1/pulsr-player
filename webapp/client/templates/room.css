@@ -5,9 +5,22 @@
 	margin-bottom: 10px;
 }
 
+.playerContainer {
+	margin-top: 40px;
+}
+
 .startButton {
-	width: 150px;
-	height: 44px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 0;
+	color: transparent;
+	background-image: url("/play-icon.png");
+	background-size: cover;
+}
+
+.startButton:focus {
+	outline: 0;
 }
 
 .searchGroup {

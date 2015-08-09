@@ -1,8 +1,18 @@
 <template class="room" name="room">
-	
-  {{print "room this:"}}
-	{{print this}}
 	<h1>{{name}}</h1><br>
+
+  <div class="searchGroup">
+          <input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+          <div class="searchButtonWidget">
+            <input type="submit" value="Search" class="searchButton"/>
+            <div class="searchButtonOverlay"></div>
+          </div>
+        </div>
+        <div id="searchResults" class="searchResults">
+          {{#each searchResults}}
+            {{> searchResult}}
+          {{/each}}
+        </div>
 
   <div class="playerContainer">
 	 {{> YTPlayer name="player"}}<br>
@@ -10,7 +20,7 @@
   
   {{#unless playlistActive}}
     <div class="buttonContainer">
-      <button id="startButton" class="startButton">Start Playlist</button><br>
+      <button id="startButton" class="startButton">Start Playlist</button>
     </div>
   {{/unless}}
 
@@ -22,21 +32,6 @@
           {{> songItem}}
         </li>
       {{/each}}
-
-      <li class="songItem">
-        <div class="searchGroup">
-      		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-          <div class="searchButtonWidget">
-      		  <input type="submit" value="Search" class="searchButton"/>
-            <div class="searchButtonOverlay"></div>
-          </div>
-      	</div>
-      	<div id="searchResults" class="searchResults">
-      		{{#each searchResults}}
-      			{{> searchResult}}
-      		{{/each}}
-      	</div>
-      </li>
     </ul>
   </div>
 
