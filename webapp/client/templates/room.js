@@ -18,7 +18,8 @@ Template.room.onCreated(function() {
 				var yt_id = Songs.findOne(songID).url.replace("https://www.youtube.com/watch?v=", "");
 				console.log(yt_id);
 				if (yt.ready()) {
-					yt.player.loadVideoById(yt_id);
+					var startSeconds = (new Date().getTime() - data.room.current_song_started.getTime()) / 1000;
+					yt.player.loadVideoById(yt_id, startSeconds);
 					yt.player.addEventListener('onStateChange', function(e) {
 						if (e.data == YT.PlayerState.ENDED) {
 							Songs.remove(songID);
