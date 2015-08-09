@@ -22,6 +22,9 @@ var songsSchema = new SimpleSchema({
 	},
   "thumbnail": { type: String },
   "channelTitle": { type: String },
+  "viewCount": { type: Number },
+  "dislikeCount": { type: Number },
+  "likeCount": { type: Number },
 
   // users can only vote once for a song
   // users can only be in one of these lists

@@ -10,6 +10,10 @@ function checkLoggedIn(currentUserId) {
   }
 }
 
+function removeCommasIntoInt(string) {
+  return parseInt(string.replace(",", ""), 10);
+}
+
 Meteor.methods({
   upvote: function (songId) {
 
@@ -113,6 +117,8 @@ Meteor.methods({
     var currentUserId = Meteor.userId();
     checkLoggedIn(currentUserId);
 
+    console.log("searchObject: ", searchObject);
+
     Songs.insert({
       "room_id": room_id,
       "title": searchObject.title,
@@ -121,6 +127,9 @@ Meteor.methods({
       "added_time": new Date(),
       "thumbnail": searchObject.thumbnail,
       "channelTitle": searchObject.channelTitle,
+      "viewCount": removeCommasIntoInt(searchObject.viewCount),
+      "dislikeCount": removeCommasIntoInt(searchObject.dislikeCount),
+      "likeCount": removeCommasIntoInt(searchObject.likeCount),
     });
   },
   addRoom: function (roomName) {
