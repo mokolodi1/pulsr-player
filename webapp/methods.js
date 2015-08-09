@@ -107,4 +107,12 @@ Meteor.methods({
 			Songs.update(newCurrentSong._id, {"$set": {played: true}});
 		}
 	},
+  addRoom: function (roomName) {
+    if (roomName) {
+      Rooms.insert({
+        name: roomName,
+        added_time: new Date(),
+      });;
+    }
+  }
 });
