@@ -261,3 +261,12 @@
 .downvoted {
 	color: purple;
 }
+
+@media only screen and (max-device-width: 480px) {
+	.voteButton {
+		font-size: 50px;
+	}
+	.like_score {
+		font-size: 40px;
+	}
+}
