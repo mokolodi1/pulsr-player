@@ -1,16 +1,94 @@
 .header {
+
+}
+.searchGroup {
 	display: flex;
 	justify-content: center;
+	margin-top: 20px;
 }
 
 .searchBar {
-	width: 500px;
+	width: 60%;
 	height: 40px;
-	margin-top: 20px;
 	line-height: 40px;
+	padding: 0;
+	border: 2px solid #79A6D1;
+	padding-left: 10px;
+	font-size: 18px;
+}
+
+.searchBar:hover, .searchBar:focus {
+	border: 2px solid #800000;
+	outline: 0;
+}
+
+.searchButtonWidget {
+	position: relative;
+	display: inline-block;
+	margin-left: 10px;
+	width: 8.1%;
+	height: 44px;
 }
 
 .searchButton {
-	height: 40px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("/search-icon.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	border: 0;
+	color: transparent;
+}
+
+.searchButtonOverlay {
+	opacity: 0;
+	position: absolute;
+	background-color: black;
+	width: 100%;
+	height: 100%;
+}
+
+.searchButtonOverlay:hover {
+	opacity: 0.2;
+	cursor: pointer;
+}
+
+.searchResults {
 	margin-top: 20px;
+}
+
+.searchResultsList {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.searchResultsList > .listItem:last-child{
+	border-bottom: 2px solid #79A6D1;
+}
+
+.listItem {
+  
+  position: relative;
+  cursor: pointer;   
+  border-top: 2px solid #79A6D1;
+  border-left: 2px solid #79A6D1;
+  border-right: 2px solid #79A6D1;
+  padding: 5px;
+}
+
+.listThumbnail {
+	width: 80px;
+	height: 60px;
+	vertical-align: middle;
+}
+
+.listInfo {
+  position: absolute;
+  top: 5px;
+  left: 130px;
+}
+
+.listInfo h3, .listInfo h4 {
+	margin: 0;
 }

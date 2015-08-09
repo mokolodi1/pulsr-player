@@ -19,13 +19,20 @@ Template.addView.helpers({
 
 Template.addView.events({
   "click #add_icon": function (event, instance) {
-    instance.hasClicked.set(true);
+    if (event.which === 1) { // left click
+      event.preventDefault();
+
+      instance.hasClicked.set(true);
+    }
   },
 	"submit #add_room": function(event, instance) {
-		Rooms.insert({
-			name: event.target.new_room_name.value,
-			added_time: new Date(),
-		});
-		instance.hasClicked.set(false);
+    if (event.which === 1) { // left click
+      event.preventDefault();
+  		Rooms.insert({
+  			name: event.target.new_room_name.value,
+  			added_time: new Date(),
+  		});
+  		instance.hasClicked.set(false);
+    }
 	},
 });

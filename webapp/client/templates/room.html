@@ -10,13 +10,20 @@
 
 	<div class="header">
 		<h1>{{name}}</h1><br>
-		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-		<input type="submit" value="Search" onclick="searchSongs()" class="searchButton"/>
-		<div id="searchResults">
+		<div class="searchGroup">
+			<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+			<div class="searchButtonWidget">
+				<input type="submit" value="Search" class="searchButton"/>
+				<div class="searchButtonOverlay"> </div>
+			</div>
+		</div>
+		<div id="searchResults" class="searchResults">
+			<div class="searchResultsList">
 				{{#each searchResults}}
 					{{> searchResult}}
 				{{/each}}
-		</div>
+			</div>
+		</div> 
 	</div>
 </template>
 

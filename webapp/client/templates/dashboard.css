@@ -12,15 +12,17 @@
 	align-content: flex-start;
 }
 
-.room_icon {
+.outer_box {
 	margin: auto;
-	font-size: 30px;
-	background: #ff5555;
-	min-width: 80px;
+	width: 300px;
+	height: 300px;
 }
 
-.add_room_box {
-	margin: auto;
+.outer_box .room_box {
+	height: 260px;
+	width: 260px;
+	display: table;
+	margin: 20px;
 	font-size: 30px;
 	background: #ff5555;
 }
@@ -28,9 +30,15 @@
 .room_text {
 	color: white;
 	text-align: center;
+	vertical-align: middle;
+  display: table-cell;
 }
 
-.room_text a {
+.room_text p {
 	text-decoration: none;
-	color: white;
+}
+
+/* removes underline */
+a, u {
+    text-decoration: none;
 }
