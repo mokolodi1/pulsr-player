@@ -11,6 +11,7 @@
 	-->
 
 	<h1 id="dashboard_header">Pulsr</h1>
+	{{> logoutBox}}
 
 	{{!-- <div id="search_field">
 		<input type="text" name="room_search" id="room_search"><br>
@@ -45,5 +46,12 @@
 				<p id="add_icon" class="room_text">+</p>
 			{{/if}}
 		</a>
+	</div>
+</template>
+
+<template name="logoutBox">
+	<div id="logout-box">
+		<img width="50" height="50" src="{{currentUser.profile.profilePicture}}" />
+		<span>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</span> <span>(Log out)</span>
 	</div>
 </template>
