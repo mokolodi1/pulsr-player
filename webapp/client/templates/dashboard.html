@@ -9,9 +9,9 @@
 
 	<h1 id="dashboard_header">Pulsr</h1>
 
-	<div id="search_field">
+	{{!-- <div id="search_field">
 		<input type="text" name="room_search" id="room_search"><br>
-	</div>
+	</div> --}}
 
 	<div id="room_container">
 		{{#each rooms}}
@@ -23,22 +23,24 @@
 </template>
 
 <template name="roomIcon">
-	<div class="room_icon">
-		<p class="room_text"><a href="/room/{{name}}">{{name}}</a></p>
+	<div class="outer_box">
+		<a class="room_box" href="{{ pathFor 'room' roomName=this.name }}">
+			<p class="room_text">{{name}}</p>
+		</a>
 	</div>
 </template>
 
 <template name="addView">
-	{{#if hasClicked}}
-		<div class="add_room_box">
-			<form id="add_room">
-				<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
-				<input type="submit">
-			</form>
-		</div>
-	{{else}}
-		<div class="room_icon">
-			<p id="add_icon" class="room_text">+</p>
-		</div>
-	{{/if}}
+	<div class="outer_box">
+		<a class="room_box" href="#">
+			{{#if hasClicked}}
+				<form id="add_room">
+					<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
+					<input type="submit">
+				</form>
+			{{else}}
+				<p id="add_icon" class="room_text">+</p>
+			{{/if}}
+		</a>
+	</div>
 </template>
