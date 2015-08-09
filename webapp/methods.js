@@ -1,34 +1,105 @@
+
+function contains(array, element) {
+  return array.indexOf(element) > -1;
+}
+
+function checkLoggedIn(currentUserId) {
+  if (! currentUserId) {
+    throw new Meteor.Error("not-authorized");
+  }
+}
+
 Meteor.methods({
   upvote: function (songId) {
 
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-
-    console.log("upvote meteor method");
-    console.log("songId: ", songId);
+    var currentUserId = Meteor.userId();
+    checkLoggedIn(currentUserId);
 
     var thisSong = Songs.findOne(songId);
-    if (thisSong.users_who_liked) {
-      // if they already like it, they want to unlike it
+
+    if (contains(thisSong.users_who_liked, currentUserId)) {
+      throw new Meteor.Error("already-upvoted");
+    }
+
+    if (contains(thisSong.users_who_disliked, currentUserId)) {
       Songs.update(songId, {
-        $pull: { "users_who_liked": Meteor.userId() },
+        $pull: { "users_who_disliked": currentUserId },
+        $addToSet: { "users_who_liked": currentUserId },
+        $inc: { "like_score": 2 },
       });
     } else {
       Songs.update(songId, {
-        $addToSet: { "users_who_liked": Meteor.userId() },
-        $pull: { "users_who_disliked": Meteor.userId() },
+        $addToSet: { "users_who_liked": currentUserId },
+        $inc: { "like_score": 1 },
       });
     }
+
+    console.log("at the end:", Songs.findOne(songId));
+  },
+  unupvote: function (songId) {
+    var currentUserId = Meteor.userId();
+    checkLoggedIn(currentUserId);
+
+    var thisSong = Songs.findOne(songId);
+    if (!contains(thisSong.users_who_liked, currentUserId) ||
+        contains(thisSong.users_who_disliked, currentUserId)) {
+      throw new Meteor.Error("wrong-vote-state");
+    }
+
+    Songs.update(songId, {
+      $pull: { "users_who_liked": currentUserId },
+      $inc: { "like_score": -1 },
+    });
+
+    console.log("at the end:", Songs.findOne(songId));
   },
   downvote: function (songId) {
 
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+    var currentUserId = Meteor.userId();
+    checkLoggedIn(currentUserId);
+
+    var thisSong = Songs.findOne(songId);
+
+    if (contains(thisSong.users_who_disliked, currentUserId)) {
+      throw new Meteor.Error("already-downvoted");
     }
 
-    console.log("downvote meteor method");
-    console.log("songId: ", songId);
+    if (contains(thisSong.users_who_liked, currentUserId)) {
+      console.log("decrease by 2");
+      Songs.update(songId, {
+        $pull: { "users_who_liked": currentUserId },
+        $addToSet: { "users_who_disliked": currentUserId },
+        $inc: { "like_score": -2 },
+      });
+    } else {
+      Songs.update(songId, {
+        $addToSet: { "users_who_disliked": currentUserId },
+        $inc: { "like_score": -1 },
+      });
+    }
 
+    console.log("at the end:", Songs.findOne(songId));
   },
+  undownvote: function (songId) {
+    var currentUserId = Meteor.userId();
+    checkLoggedIn(currentUserId);
+
+    var thisSong = Songs.findOne(songId);
+    if (!contains(thisSong.users_who_disliked, currentUserId) ||
+        contains(thisSong.users_who_liked, currentUserId)) {
+      throw new Meteor.Error("wrong-vote-state");
+    }
+
+    Songs.update(songId, {
+      $pull: { "users_who_disliked": currentUserId },
+      $inc: { "like_score": 1 },
+    });
+
+    console.log("at the end:", Songs.findOne(songId));
+  },
+  setCurrentSong: function (roomID) {
+		console.log(roomID);
+		var newCurrentSong = Songs.findOne({room_id: roomID}, {sort: {like_score: -1}});
+		Rooms.update(roomID, {"$set": {current_song_id: newCurrentSong._id}});
+	},
 });
