@@ -29,7 +29,7 @@ searchSongs = function(e) {
 
 
 
-    console.log(JSON.stringify(results));
+    //console.log(JSON.stringify(results));
     resultElements = []
     results.map(function(result) {
     });
