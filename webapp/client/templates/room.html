@@ -10,20 +10,34 @@
 		<button id="startButton">Start Playlist</button><br>
 	{{/unless}}
 
-  {{#each songs}}
-    this is a song: {{this.name}}
-    <br />
-  {{/each}}
+  <div id="songsList">
+    <ul>
 
-	<div class="header">
-		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-		<input type="submit" value="Search" onclick="searchSongs()" class="searchButton"/>
-		<div id="searchResults">
-				{{#each searchResults}}
-					{{> searchResult}}
-				{{/each}}
-		</div>
-	</div>
+      {{#each songs}}
+        <li class="songItem">
+          <div>
+            <a href="#">&#x25B2;</a>
+            <a href="#">&#x25BC;</a>
+          </div>
+          <span>{{likeSum}}</span>
+          <span>{{this.name}}</span>
+        </li>
+      {{/each}}
+
+      <li class="songItem">
+        <div class="searchGroup">
+      		<input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+      		<input type="submit" value="Search" class="searchButton"/>
+      	</div>
+      	<div id="searchResults" class="searchResults">
+      		{{#each searchResults}}
+      			{{> searchResult}}
+      		{{/each}}
+      	</div>
+      </li>
+    </ul>
+  </div>
+
 </template>
 
 <template name="searchResult">

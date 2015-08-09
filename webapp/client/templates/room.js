@@ -26,6 +26,16 @@ Template.room.onCreated(function() {
 Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
+	},
+	likeSum: function () {
+		return 5;
+		// return this.like_count + this.dislike_count;
+	},
+});
+
+Template.searchResult.events({
+	'click .listItem': function(event, instance) {
+		window.addSongToPlaylist(instance.data);
 	}
 });
 
@@ -33,4 +43,12 @@ Template.room.events({
 	"click startButton": function(event, instance) {
 		Meteor.call('setCurrentSong', instance.data.id);
 	},
+	'click .searchButton': function() {
+		window.searchSongs();
+	},
+	'keypress .searchBar': function(event) {
+		if (event.keyCode == 13) {
+			window.searchSongs();
+		}
+	}
 });

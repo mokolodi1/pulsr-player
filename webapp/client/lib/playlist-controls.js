@@ -1,0 +1,3 @@
+addSongToPlaylist = function(song) {
+	
+}

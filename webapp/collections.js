@@ -18,26 +18,33 @@ var songsSchema = new SimpleSchema({
 	"added_time": { type: Date },
 	"duration": { type: Date },
 
-	// users can only vote once for a song
-	// users can only be in one of these lists
-	// (can't upvote and downvote the same song)
-	"like_count": {
-		type: Number,
-		autoValue: function () {
-			var liked = this.field("users_who_liked").value;
-			var disliked = this.field("users_who_liked").value;
-			if (liked) {
-				if (disliked) {
-					return liked.length - disliked.length;
-				} else {
-					return liked.length;
-				}
-			}
-			return 0;
-		},
-	},
-	"users_who_liked": { type: [Meteor.ObjectID], optional: true },
-	"users_who_disliked": { type: [Meteor.ObjectID], optional: true },
+  // users can only vote once for a song
+  // users can only be in one of these lists
+  // (can't upvote and downvote the same song)
+  "like_count": {
+    type: Number,
+    autoValue: function () {
+      var usersWhoLiked = this.siblingField("users_who_liked");
+      if (usersWhoLiked.value === undefined) {
+        return 0;
+      } else {
+        return usersWhoLiked.value.length;
+      }
+    },
+  },
+  "dislike_count": {
+    type: Number,
+    autoValue: function () {
+      var usersWhoLiked = this.siblingField("users_who_disliked");
+      if (usersWhoLiked.value === undefined) {
+        return 0;
+      } else {
+        return usersWhoLiked.value.length;
+      }
+    },
+  },
+  "users_who_liked": { type: [Meteor.ObjectID], optional: true },
+  "users_who_disliked": { type: [Meteor.ObjectID], optional: true },
 });
 
 Rooms = new Mongo.Collection("rooms");
