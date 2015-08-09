@@ -56,6 +56,7 @@ Template.searchResult.events({
 
 		Meteor.call("addSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
+		searchResults.set([])
 	}
 });
 
