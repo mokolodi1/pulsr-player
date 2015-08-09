@@ -47,7 +47,7 @@
 	display: table;
 	margin: 20px;
 	font-size: 30px;
-	background: #ff5555;
+	background-color: rgba(31, 31, 70, 0.6);
 }
 
 .room-box-edit {

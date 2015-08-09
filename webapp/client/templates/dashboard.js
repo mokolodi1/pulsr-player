@@ -32,8 +32,15 @@ Template.addView.events({
       Meteor.call('addRoom', $('#new_room_name').val())
   		instance.hasClicked.set(false);
     }
-	}
+	},
+  "keypress input": function(event, instance) {
+    if (event.charCode == 13) {
+      Meteor.call('addRoom', $('#new_room_name').val())
+      instance.hasClicked.set(false);
+    }
+  },
 });
+
 
 Template.logoutBox.onRendered(function() {
   $('#logout-link').click(function() {
