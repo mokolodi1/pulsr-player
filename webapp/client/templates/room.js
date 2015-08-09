@@ -1,7 +1,11 @@
 Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
-	}
+	},
+	likeSum: function () {
+		return 5;
+		// return this.like_count + this.dislike_count;
+	},
 });
 
 Template.searchResult.events({
@@ -20,4 +24,4 @@ Template.room.events({
 		}
 	}
 
-})
+});

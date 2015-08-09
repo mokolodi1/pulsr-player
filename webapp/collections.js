@@ -21,6 +21,28 @@ var songsSchema = new SimpleSchema({
   // users can only vote once for a song
   // users can only be in one of these lists
   // (can't upvote and downvote the same song)
+  "like_count": {
+    type: Number,
+    autoValue: function () {
+      var usersWhoLiked = this.siblingField("users_who_liked");
+      if (usersWhoLiked.value === undefined) {
+        return 0;
+      } else {
+        return usersWhoLiked.value.length;
+      }
+    },
+  },
+  "dislike_count": {
+    type: Number,
+    autoValue: function () {
+      var usersWhoLiked = this.siblingField("users_who_disliked");
+      if (usersWhoLiked.value === undefined) {
+        return 0;
+      } else {
+        return usersWhoLiked.value.length;
+      }
+    },
+  },
   "users_who_liked": { type: [Meteor.ObjectID], optional: true },
   "users_who_disliked": { type: [Meteor.ObjectID], optional: true },
 });
