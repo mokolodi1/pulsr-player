@@ -9,3 +9,15 @@ Template.searchResult.events({
 		window.addSongToPlaylist(instance.data);
 	}
 });
+
+Template.room.events({
+	'click .searchButton': function() {
+		window.searchSongs();
+	},
+	'keypress .searchBar': function(event) {
+		if (event.keyCode == 13) {
+			window.searchSongs();
+		}
+	}
+
+})

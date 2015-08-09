@@ -33,7 +33,7 @@
   position: relative;
   width: 70%;
   margin: auto;
-  
+  cursor: pointer; 
 }
 
 .listInfo {
