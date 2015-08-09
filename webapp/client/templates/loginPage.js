@@ -1,3 +1,7 @@
+Template.loginPage.rendered = function() {
+  document.getElementById('background-video').playbackRate = 0.5;
+}
+
 Template.loginPage.events({
   'click #fb-login-button': function(e) {
     console.log("Logging in...");
