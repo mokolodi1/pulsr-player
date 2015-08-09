@@ -16,10 +16,14 @@
   <div class="searchGroupContainer">
     <div class="searchGroup">
       <input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-      <div class="searchButtonWidget">
+      <div class="searchButtonWidget" id="ytSearch">
         <input type="submit" value="Search" class="searchButton"/>
         <div class="searchButtonOverlay"></div>
       </div>
+			<div class="searchButtonWidget" id="scSearch">
+				<input type="submit" value="Search" class="scSearchButton"/>
+        <div class="searchButtonOverlay"></div>
+			</div>
     </div>
   </div>
   <div id="searchResults" class="searchResults">
@@ -30,6 +34,12 @@
           X
         </button>
     </div>
+		{{else}}
+			{{#if scSearchResultsExist scSearchResults}}
+				<button id="closeSearchButton" class="closeSearchButton">
+					X
+				</button>
+			{{/if}}
     {{/if}}
 
     <div class="searchResultsList">
@@ -37,15 +47,25 @@
         {{> searchResult}}
       {{/each}}
     </div>
+		<div class="scSearchResultsList">
+			{{#each scSearchResults}}
+				{{> scSearchResult}}
+			{{/each}}
+		</div>
+
   </div>
 
   {{#if isPhone}}
     <!-- no video player on mobile -->
     <!-- NOTE: the video player actually doesn't work on my phone -->
   {{else}}
-    <div class="playerContainer">
-	    {{> YTPlayer name="player"}}<br>
-    </div>
+		{{#if soundcloud}}
+			<iframe id="sc-widget" src="https://w.soundbutt.com/player/" width="100%" height="465" scrolling="no" frameborder="no"></iframe><br>
+		{{else}}
+			<div class="playerContainer">
+				{{> YTPlayer name="player"}}<br>
+			</div>
+		{{/if}}
   {{/if}}
 
   {{#unless hasStartedPlaying}}
@@ -107,6 +127,24 @@
           <div><i class="fa fa-eye"></i><span class="tab">{{viewCount}}</span></div>
           <div><i class="fa fa-thumbs-up"></i><span class="tab">{{likeCount}}</span></div>
           <div><i class="fa fa-thumbs-down"></i><span class="tab">{{dislikeCount}}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- SOUNDCLOUD SEARCH RESULT TEMPLATE -->
+<template name="scSearchResult">
+	<div class="scSearchListItem">
+    <img src="{{thumbnail}}" class="listThumbnail"/>
+    <div class="listInfo">
+      <h4>{{title}}</h4>
+      <div class="listInfoBottom">
+        <span>by </span><span class="channelTitle">{{username}}</span>
+        <div class="statisticsInfo">
+          <div><i class="fa fa-eye"></i><span class="tab">{{playCount}}</span></div>
+          <div><i class="fa fa-thumbs-up"></i><span class="tab">{{likeCount}}</span></div>
+          <div><i class="fa fa-thumbs-down"></i><span class="tab">{{favoriteCount}}</span></div>
         </div>
       </div>
     </div>

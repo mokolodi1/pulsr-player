@@ -137,6 +137,26 @@ Meteor.methods({
       "likeCount": removeCommasIntoInt(searchObject.likeCount),
     });
   },
+	addSCSong: function (searchObject, room_id) {
+    var currentUserId = Meteor.userId();
+    checkLoggedIn(currentUserId);
+
+    //console.log("searchObject: ", searchObject);
+
+    Songs.insert({
+      "room_id": room_id,
+      "title": searchObject.title,
+      "soundcloud_id": searchObject.id,
+      "added_by_user_id": currentUserId,
+      "added_time": new Date(),
+      "thumbnail": searchObject.thumbnail,
+      "channelTitle": searchObject.username,
+      "viewCount": removeCommasIntoInt(searchObject.playCount),
+      "dislikeCount": removeCommasIntoInt(searchObject.favoriteCount),
+      "likeCount": removeCommasIntoInt(searchObject.likeCount),
+    });
+  },
+
   addRoom: function (roomName) {
     if (roomName) {
       Rooms.insert({

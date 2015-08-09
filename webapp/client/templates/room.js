@@ -11,6 +11,7 @@ Template.room.onCreated(function() {
 	var instance = this;
 
 	instance.currentlyPlayingSong = new ReactiveVar("");
+	instance.soundcloud = new ReactiveVar(false);
 
 	var yt = new YTPlayer("player", {
 		height: '390',
@@ -29,21 +30,27 @@ Template.room.onCreated(function() {
 					Songs.findOne(songID)) {
 				//console.log("Songs.findOne(songID): ", Songs.findOne(songID));
 				var yt_id = Songs.findOne(songID).video_id;
-				console.log(yt_id);
-				if (yt.ready()) {
-					var startSeconds = (new Date().getTime() - data.room.current_song_started.getTime()) / 1000;
-					yt.player.loadVideoById(yt_id, startSeconds);
-					yt.player.addEventListener('onStateChange', function(e) {
-						if (e.data == YT.PlayerState.ENDED) {
+				if (yt_id) {
+					instance.soundcloud.set(true);
+					if (yt.ready) {
+						var startSeconds = (new Date().getTime() - data.room.current_song_started.getTime()) / 1000;
+						yt.player.loadVideoById(yt_id, startSeconds);
+						yt.player.addEventListener('onStateChange', function(e) {
+							if (e.data == YT.PlayerState.ENDED) {
 
-							// hack to make it stop removing too many
-							if (new Date() - lastRun > 500) {
-								Meteor.call('nextTrack', instance.data.room._id);
-								lastRun = new Date();
+								// hack to make it stop removing too many
+								if (new Date() - lastRun > 500) {
+									Meteor.call('nextTrack', instance.data.room._id);
+									lastRun = new Date();
+								}
 							}
-						}
-					});
+						});
+					}
 					instance.currentlyPlayingSong.set(songID);
+				} else {
+					var sc_id = Songs.findOne(songID).soundcloud_id;
+					instance.soundcloud.set(true);
+					//Start soundcloud player with current song
 				}
 			}
 		}
@@ -53,6 +60,9 @@ Template.room.onCreated(function() {
 Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
+	},
+	scSearchResults: function() {
+		return scSearchResults.get();
 	},
 });
 
@@ -65,12 +75,24 @@ Template.searchResult.events({
 		Meteor.call("addSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
 		searchResults.set([]);
+	},
+	'click .scSearchListItem': function(event, instance) {
+		event.preventDefault();
+
+		console.log("INSTANCE DATA = " + instance.data);
+
+		Meteor.call("addSCSong", instance.data,
+				instance.parentTemplate(1).data.room._id);
+		searchResults.set([]);
 	}
 });
 
 Template.room.helpers({
 	searchResultsExist: function(searchResults) {
 		return searchResults.length > 0;
+	},
+	scSearchResultsExist: function(scSearchResults) {
+		return scSearchResults.length > 0;
 	},
 	hasStartedPlaying: function () {
 		return Template.instance().data.room.has_started_playing;
@@ -81,8 +103,11 @@ Template.room.events({
 	"click #startButton": function(event, instance) {
 		Meteor.call('nextTrack', instance.data.room._id);
 	},
-	'click .searchButtonWidget': function() {
+	'click #ytSearch': function() {
 		window.searchSongs();
+	},
+	'click #scSearch': function() {
+		window.searchSC();
 	},
 	'keypress .searchBar': function(event) {
 		if (event.keyCode == 13) {

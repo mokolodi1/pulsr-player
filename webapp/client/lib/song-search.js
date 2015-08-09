@@ -1,5 +1,5 @@
 searchResults = new ReactiveVar([]); // package is reactive-var
-
+scSearchResults = new ReactiveVar([]);
 
 searchSongs = function(e) {
   var request = gapi.client.youtube.search.list({
@@ -53,3 +53,28 @@ searchSongs = function(e) {
     //searchResults.set(results);
   });
 };
+
+searchSC = function(e) {
+	var q = encodeURIComponent($("#search").val()).replace(/%20/g, "+");
+	SC.get("/tracks", {q: q}, function (tracks) {
+		console.log(tracks);
+
+		var scResults = [];
+
+		tracks.forEach(function(track) {
+			scResults.push({
+				id: track.id,
+				title: track.title,
+				username: track.user.username,
+				thumbnail: track.artwork_url,
+				playCount: track.playback_count,
+				likeCount: track.likes_count,
+				favoriteCount: track.favoritings_count,
+			});
+		});
+
+		console.log(scResults);
+		scSearchResults.set(scResults);
+	});
+
+	};
