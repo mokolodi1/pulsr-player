@@ -1,3 +1,14 @@
+// Sets the API key and stuff
+ServiceConfiguration.configurations.upsert({
+    service:"facebook"
+}, {
+    $set: {
+        "appId" : "995791350453194",
+        "secret" : "64206cdd5b02e60598c82eec2f2cd4c6",
+        "loginStyle" : "popup"
+    }
+});
+
 function Facebook(accessToken) {
   this.fb = Meteor.npmRequire('fbgraph');
   this.accessToken = accessToken;
@@ -27,6 +38,10 @@ Facebook.prototype.getFriendsData = function() {
   return this.query('/me/friends');
 }
 
+Facebook.prototype.getProfilePicture = function() {
+  return this.query('/me/picture');
+}
+
 Meteor.methods({
   getUserData: function() {
     var fb = new Facebook(Meteor.user().services.facebook.accessToken);
@@ -36,6 +51,11 @@ Meteor.methods({
   getFriendsData: function() {
     var fb = new Facebook(Meteor.user().services.facebook.accessToken);
     var data = fb.getFriendsData();
+    return data;
+  },
+  getProfilePicture: function() {
+    var fb = new Facebook(Meteor.user().services.facebook.accessToken);
+    var data = fb.getProfilePicture();
     return data;
   }
 });
