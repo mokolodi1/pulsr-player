@@ -1,5 +1,20 @@
 #dashboard_header {
 	text-align: center;
+	color: white;
+	margin: 0;
+}
+
+#logout-box {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	color: white;
+}
+
+#logout-box > img {
+	vertical-align: middle;
+	border-radius: 50%;
+	border: 2px solid #8bb;
 }
 
 #room_search {

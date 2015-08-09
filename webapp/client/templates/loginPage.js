@@ -11,13 +11,14 @@ Template.loginPage.events({
       if (err) {
         throw err;
       }
-      
-      Router.go("dashboard");
-    });
-  },
-  'click #btn-user-data': function(e) {
-    Meteor.call('getFriendsData', function(err, data) {
-      $('#result').text(JSON.stringify(data, undefined, 4));
+
+      Meteor.call('getProfilePicture', function(err, data) {
+        if (err) {
+          throw err;
+        }
+
+        Router.go("dashboard");
+      });
     });
   }
 });
