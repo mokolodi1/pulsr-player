@@ -60,7 +60,7 @@
     <!-- NOTE: the video player actually doesn't work on my phone -->
   {{else}}
 		{{#if soundcloud}}
-		<iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=http://api.soundcloud.com%2Ftracks%{{soundcloud}}&show_artwork=true" width="100%" height="465" scrolling="no" frameborder="no"></iframe><br>
+		  <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/{{soundcloud}}&show_artwork=true" width="100%" height="465" scrolling="no" frameborder="no"></iframe><br>
 		{{else}}
 			<div class="playerContainer">
 				{{> YTPlayer name="player"}}<br>

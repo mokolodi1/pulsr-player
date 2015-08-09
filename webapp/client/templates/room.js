@@ -49,6 +49,7 @@ Template.room.onCreated(function() {
 					instance.currentlyPlayingSong.set(songID);
 				} else {
 					var sc_id = Songs.findOne(songID).soundcloud_id;
+					console.log("sc_id:", sc_id);
 					instance.soundcloud.set(sc_id);
 					//Start soundcloud player with current song
 				}
@@ -101,7 +102,10 @@ Template.room.helpers({
 		return scSearchResults.length > 0;
 	},
 	hasStartedPlaying: function () {
-		return Template.instance().data.room.has_started_playing;
+		if (Template.instance().data) {
+			return Template.instance().data.room.has_started_playing;
+		}
+		
 	},
 });
 
