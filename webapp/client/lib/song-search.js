@@ -1,6 +1,7 @@
 searchResults = new ReactiveVar([]); // package is reactive-var
 //searchResults.set([])
 
+
 searchSongs = function(e) {
   var request = gapi.client.youtube.search.list({
     part: "snippet",

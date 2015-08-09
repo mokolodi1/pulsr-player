@@ -88,6 +88,17 @@
 	margin-top: 20px; /* does nothing... */
 }
 
+.closeSearchButtonContainer1 {
+	width: 65%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.closeSearchButton {
+	float: right;
+}
+
 .searchResultsList {
 	width: 65%;
 	margin: 0 auto;

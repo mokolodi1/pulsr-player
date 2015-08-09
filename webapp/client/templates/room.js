@@ -56,6 +56,12 @@ Template.searchResult.events({
 	}
 });
 
+Template.room.helpers({
+	searchResultsExist: function(searchResults) {
+		return searchResults.length > 0;
+	}
+});
+
 Template.room.events({
 	"click #startButton": function(event, instance) {
 		Meteor.call('setCurrentSong', instance.data.room._id);
@@ -68,6 +74,9 @@ Template.room.events({
 			window.searchSongs();
 		}
 	},
+	'click .closeSearchButton': function() {
+		searchResults.set([]);
+	}
 });
 
 Template.songItem.events({
