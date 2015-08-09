@@ -12,13 +12,19 @@
 	align-content: flex-start;
 }
 
-.room_box {
+.outer_box {
+	margin: auto;
+	width: 300px;
+	height: 300px;
+}
+
+.outer_box .room_box {
+	height: 260px;
+	width: 260px;
+	display: table;
 	margin: 20px;
 	font-size: 30px;
 	background: #ff5555;
-	width: 300px;
-	height: 300px;
-	display: table;
 }
 
 .room_text {
@@ -30,4 +36,9 @@
 
 .room_text p {
 	text-decoration: none;
+}
+
+/* removes underline */
+a, u {
+    text-decoration: none;
 }

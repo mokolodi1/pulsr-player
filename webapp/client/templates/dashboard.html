@@ -18,20 +18,24 @@
 </template>
 
 <template name="roomIcon">
-	<a href="{{ pathFor 'room' roomName=this.name }}" class="room_box">
-		<p class="room_text">{{name}}</p>
-	</a>
+	<div class="outer_box">
+		<a class="room_box" href="{{ pathFor 'room' roomName=this.name }}">
+			<p class="room_text">{{name}}</p>
+		</a>
+	</div>
 </template>
 
 <template name="addView">
-	<a class="room_box" href="#">
-		{{#if hasClicked}}
-			<form id="add_room">
-				<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
-				<input type="submit">
-			</form>
-		{{else}}
-			<p id="add_icon" class="room_text">+</p>
-		{{/if}}
-	</a>
+	<div class="outer_box">
+		<a class="room_box" href="#">
+			{{#if hasClicked}}
+				<form id="add_room">
+					<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name"><br>
+					<input type="submit">
+				</form>
+			{{else}}
+				<p id="add_icon" class="room_text">+</p>
+			{{/if}}
+		</a>
+	</div>
 </template>
