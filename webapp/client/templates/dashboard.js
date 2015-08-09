@@ -6,14 +6,17 @@ Template.addView.onCreated(function () {
 
 Template.addView.rendered = function () {
   console.log("hmmm");
-
 };
+
+Template.dashboard.onCreated(function() {
+  Session.set('currentRoomId', '');
+});
 
 // make a helper to get
 Template.dashboard.helpers({
 	rooms: function() {
 		return Rooms.find();
-	},
+	}
 });
 
 Template.addView.helpers({
@@ -37,7 +40,6 @@ Template.addView.events({
     instance.hasClicked.set(false);
   },
 	"click #add-room-button": function(event, instance) {
-    console.log("AAA");
     if (event.which === 1) { // left click
       event.preventDefault();
       Meteor.call('addRoom', $('#new_room_name').val());
