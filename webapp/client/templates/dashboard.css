@@ -64,6 +64,15 @@
 	background-color: rgba(31, 31, 70, 0.6);
 }
 
+.room_box:hover {
+	box-shadow: 5px 5px 15px #ffffff;
+}
+
+.room_box {
+	border-radius: 50%;
+	box-shadow: 0px 0px 5px #ffffff;
+}
+
 .room-box-edit {
 	display: table-cell;
 	vertical-align: middle;
@@ -76,6 +85,7 @@
 	color: white;
 	width: 100%;
 	box-sizing: border-box;
+	outline: 0;
 }
 
 .room_text {
@@ -86,7 +96,7 @@
 }
 
 .room_text:hover {
-	box-shadow: 0px 0px 5px #ffffff;
+	
 }
 
 .room_text p {
