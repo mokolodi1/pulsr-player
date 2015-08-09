@@ -21,9 +21,11 @@ Template.room.onCreated(function() {
 					yt.player.loadVideoById(yt_id);
 					yt.player.addEventListener('onStateChange', function(e) {
 						if (e.data == YT.PlayerState.ENDED) {
+							Songs.remove(songID);
 							Meteor.call('setCurrentSong', instance.data.room._id);
 						}
 					});
+					instance.currentlyPlayingSong.set(songID);
 				}
 			}
 		}
@@ -33,6 +35,9 @@ Template.room.onCreated(function() {
 Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
+	},
+	votingSongs: function () {
+		return Songs.find({played: false});
 	},
 });
 
