@@ -39,8 +39,9 @@
     </div>
   {{/unless}}
 
+  <!--INSERTING THE PLAYLIST TEMPLATE -->
   <div id="songsList" class="songsListContainer">
-    <div class="songsList">
+    <div class="searchResultsList">
       {{#each votingSongs}}
           {{> songItem}}
       {{/each}}
@@ -49,35 +50,38 @@
 
 </template>
 
+<!-- PLAYLIST TEMPLATE DESCRIPTION-->
 <template name="songItem">
-  <div class="searchListItem">
-    <div>
-      <div>
-        <i class="voteButton fa fa-thumbs-up"></i>
+
+    <div class="playlistItem">
+      <div class="scoreWidget">
+        <div>
+          <i class="voteButton fa fa-thumbs-up"></i>
+        </div>
+        <div><span>{{like_score}}</span></div>
+        <div>
+          <i class="voteButton fa fa-thumbs-down"></i>
+        </div>
       </div>
-      <div>
-        <i class="voteButton fa fa-thumbs-down"></i>
-      </div>
-    </div>
-    <img src="{{thumbnail}}" class="songThumbnail"/>
-    <div class="listInfo">
-      <h3>{{title}}</h3>
-      <div class="listInfoBottom">
-        <span>by </span><span class="channelTitle">{{channelTitle}}</span>
-        <div class="statisticsInfo">
-          <div><i class="fa fa-eye"></i><span class="tab">{{viewCount}}</span></div>
-          <div><i class="fa fa-thumbs-up .upvote"></i><span class="tab">{{likeCount}}</span></div>
-          <div><i class="fa fa-thumbs-down .downvote"></i><span class="tab">{{dislikeCount}}</span></div>
+
+      <div class="playlistWidget">
+        <img src="{{thumbnail}}" class="listThumbnail"/>
+        <div class="listInfo">
+          <h3>{{title}}</h3>
+          <div class="listInfoBottom">
+            <span>by </span><span class="channelTitle">{{channelTitle}}</span>
+            <div class="statisticsInfo">
+              <div><i class="fa fa-eye"></i><span class="tab">{{viewCount}}</span></div>
+              <div><i class="fa fa-thumbs-up"></i><span class="tab">{{likeCount}}</span></div>
+              <div><i class="fa fa-thumbs-down"></i><span class="tab">{{dislikeCount}}</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-    <span>{{like_score}}</span>
-    <span>{{this.name}}</span>
-
 </template>
 
+<!-- SEARCH RESULT TEMPLATE -->
 <template name="searchResult">
 	<div class="searchListItem">
     <img src="{{thumbnail}}" class="listThumbnail"/>
