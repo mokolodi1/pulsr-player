@@ -59,7 +59,10 @@ Template.searchResult.events({
 Template.room.helpers({
 	searchResultsExist: function(searchResults) {
 		return searchResults.length > 0;
-	}
+	},
+	hasStartedPlaying: function () {
+		return Template.instance().data.room.has_started_playing;
+	},
 });
 
 Template.room.events({

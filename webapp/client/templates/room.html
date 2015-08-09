@@ -33,7 +33,7 @@
 	 {{> YTPlayer name="player"}}<br>
   </div>
 
-  {{#unless playlistActive}}
+  {{#unless hasStartedPlaying}}
     <div class="buttonContainer">
       <button id="startButton" class="startButton">Start Playlist</button>
     </div>
@@ -72,7 +72,7 @@
       </div>
     </div>
   </div>
-    
+
     <span>{{like_score}}</span>
     <span>{{this.name}}</span>
 
