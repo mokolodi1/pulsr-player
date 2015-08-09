@@ -1,3 +1,12 @@
+.headerContainer {
+	position: relative;
+}
+
+.dashLink {
+	position: absolute;
+	margin-top: 10px;
+}
+
 .room-background {
 	position: absolute;
 	width: 100%;
@@ -31,10 +40,13 @@
 	outline: 0;
 }
 
+.searchGroupContainer {
+
+}
+
 .searchGroup {
 	display: flex;
 	justify-content: center;
-	margin-top: 20px;
 }
 
 .searchBar {
@@ -121,7 +133,7 @@
 .searchListItem {
   background-color: rgba(121, 166, 209, 0.5);
   position: relative;
-  cursor: pointer;   
+  cursor: pointer;
   border-top: 2px solid #79A6D1;
   border-left: 2px solid #79A6D1;
   border-right: 2px solid #79A6D1;
@@ -206,17 +218,37 @@
 }
 
 .scoreWidget {
-	margin: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .playlistWidget {
   width: 100%;
   background-color: rgba(121, 166, 209, 0.5);
   position: relative;
-  cursor: pointer;   
+  cursor: pointer;
   border-top: 2px solid #79A6D1;
   border-left: 2px solid #79A6D1;
   border-right: 2px solid #79A6D1;
   padding: 5px;
   overflow: hidden;
+}
+
+#room_header {
+	font-family: SpaceAge, sans-serif;
+	margin: 20px;
+	text-align: left;
+	color: white;
+	font-size: 24px;
+}
+
+/*
+** These are for you!
+*/
+.upvoted {
+
+}
+
+.downvoted {
+
 }

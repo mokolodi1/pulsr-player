@@ -42,6 +42,9 @@ Router.map(function() {
 
   this.route('room', {
     path: '/room/:roomName',
+    onWait: function () {
+      console.log("onWait method");
+    },
     subscriptions: function () {
       return Meteor.subscribe("singleRoom",
         this.params.roomName,
@@ -62,7 +65,7 @@ Router.map(function() {
                 "room_id": currentRoom._id,
                 "played": false,
               }, {
-                sort: {"like_score": -1, "added_time": 1}
+                sort: {"like_score": -1, /*"added_time": 1*/}
               }),
         };
       } else {

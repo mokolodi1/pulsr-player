@@ -20,8 +20,11 @@ var songsSchema = new SimpleSchema({
 		type: Boolean,
 		defaultValue: false,
 	},
-  "thumbnail": { type: String },
-  "channelTitle": { type: String },
+  "thumbnail": { type: String, optional: true },
+  "channelTitle": { type: String, optional: true },
+  "viewCount": { type: Number, optional: true },
+  "dislikeCount": { type: Number, optional: true },
+  "likeCount": { type: Number, optional: true },
 
   // users can only vote once for a song
   // users can only be in one of these lists

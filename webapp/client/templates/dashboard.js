@@ -21,7 +21,6 @@ Template.addView.events({
   "click #add_icon": function (event, instance) {
     if (event.which === 1) { // left click
       event.preventDefault();
-
       instance.hasClicked.set(true);
       // setTimeout(function () {
       //   $("body").on("click", function (event) {

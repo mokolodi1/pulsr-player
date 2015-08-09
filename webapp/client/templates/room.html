@@ -4,12 +4,18 @@
   </video>
 
   <h1>{{name}}</h1><br>
-
-  <div class="searchGroup">
-    <input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
-    <div class="searchButtonWidget">
-      <input type="submit" value="Search" class="searchButton"/>
-      <div class="searchButtonOverlay"></div>
+  <div class="headerContainer">
+    <a href="/" class="dashLink">
+      <span id="room_header">Pulsr</span>
+    </a>
+  </div>
+  <div class="searchGroupContainer">
+    <div class="searchGroup">
+      <input type="text" id="search" placeholder="Search for a Song!" class="searchBar"/>
+      <div class="searchButtonWidget">
+        <input type="submit" value="Search" class="searchButton"/>
+        <div class="searchButtonOverlay"></div>
+      </div>
     </div>
   </div>
   <div id="searchResults" class="searchResults">
@@ -42,7 +48,7 @@
   <!--INSERTING THE PLAYLIST TEMPLATE -->
   <div id="songsList" class="songsListContainer">
     <div class="searchResultsList">
-      {{#each votingSongs}}
+      {{#each songs}}
           {{> songItem}}
       {{/each}}
     </div>
@@ -52,17 +58,17 @@
 
 <!-- PLAYLIST TEMPLATE DESCRIPTION-->
 <template name="songItem">
-    
+
     <div class="playlistItem">
       <div class="scoreWidget">
         <div>
-          <i class="voteButton fa fa-thumbs-up"></i>
+          <i class="voteButton fa fa-thumbs-up upvote {{upvotedClass}}"></i>
         </div>
         <div><span>{{like_score}}</span></div>
         <div>
-          <i class="voteButton fa fa-thumbs-down"></i>
+          <i class="voteButton fa fa-thumbs-down downvote {{downvotedClass}}"></i>
         </div>
-      </div>  
+      </div>
 
       <div class="playlistWidget">
         <img src="{{thumbnail}}" class="listThumbnail"/>
