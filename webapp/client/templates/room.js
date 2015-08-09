@@ -18,6 +18,11 @@ Template.room.onCreated(function() {
 				console.log(yt_id);
 				if (yt.ready()) {
 					yt.player.loadVideoById(yt_id);
+					yt.player.addEventListener('onStateChange', function(e) {
+						if (e.data == YT.PlayerState.ENDED) {
+							Meteor.call('setCurrentSong', instance.data.room._id);
+						}
+					});
 				}
 			}
 		}
