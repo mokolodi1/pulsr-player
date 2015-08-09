@@ -8,12 +8,7 @@
 
       {{#each songs}}
         <li class="songItem">
-          <div>
-            <a href="#">&#x25B2;</a>
-            <a href="#">&#x25BC;</a>
-          </div>
-          <span>{{likeSum}}</span>
-          <span>{{this.name}}</span>
+          {{> songItem}}
         </li>
       {{/each}}
 
@@ -31,6 +26,17 @@
     </ul>
   </div>
 
+</template>
+
+<template name="songItem">
+  <div>
+    <div>
+      <a href="#" class="upvote">&#x25B2;</a>
+      <a href="#" class="downvote">&#x25BC;</a>
+    </div>
+    <span>{{like_score}}</span>
+    <span>{{this.name}}</span>
+  </div>
 </template>
 
 <template name="searchResult">
