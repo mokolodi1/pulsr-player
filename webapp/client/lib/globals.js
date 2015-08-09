@@ -2,6 +2,10 @@ Template.registerHelper("print", function (object) {
   console.log(object);
 });
 
+Template.registerHelper("isPhone", function () {
+  return Meteor.Device.isPhone();
+});
+
 Blaze.TemplateInstance.prototype.parentTemplate = function (levels) {
   var view = Blaze.currentView;
   if (typeof levels === "undefined") {

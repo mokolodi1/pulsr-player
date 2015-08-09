@@ -1,21 +1,21 @@
 <template name="dashboard">
 
-  <video autoplay loop id="background-video" class="background-video">
-  	<source src="/dashboard_background.mp4" type="video/mp4">
-  </video>
-	{{print "dashboard this:"}}
-	{{print this.rooms}}
+  {{print "dashboard this:"}}
+	{{print this}}
 
-	<!--
-	<iframe title="Stupeflix Video Player" class="SxPlayer" src="//studio.stupeflix.com/embed/HhvZe2Yp7gW6/" width="640" height="360" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
-	-->
+  {{print "isPHone::"}}
+  {{print isPhone}}
+
+  {{#if isPhone}}
+    phone
+  {{else}}
+    <video autoplay loop id="background-video" class="background-video">
+      <source src="/dashboard_background.mp4" type="video/mp4">
+    </video>
+  {{/if}}
 
 	<h1 id="dashboard_header">Pulsr</h1>
 	{{> logoutBox}}
-
-	{{!-- <div id="search_field">
-		<input type="text" name="room_search" id="room_search"><br>
-	</div> --}}
 
 	<div id="room_container">
 		{{#each rooms}}
@@ -39,7 +39,7 @@
 		<a class="room_box" href="#">
 			{{#if hasClicked}}
 				<div class="room-box-edit">
-					<input type="text" id="new_room_name" placeholder="Name" />
+					<input type="text" id="new_room_name" placeholder="Name" focus=true/>
 				</div>
 			{{else}}
 				<p id="add_icon" class="room_text">+</p>

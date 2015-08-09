@@ -1,6 +1,6 @@
 Template.loginPage.rendered = function() {
   document.getElementById('background-video').playbackRate = 0.5;
-}
+};
 
 Template.loginPage.events({
   'click #fb-login-button': function(e) {
@@ -19,6 +19,14 @@ Template.loginPage.events({
 
         Router.go("dashboard");
       });
+    });
+  },
+  'submit form': function(event) {
+    event.preventDefault();
+    var email = $('[name=email]').val();
+    var password = $('[name=password]').val();
+    Meteor.loginWithPassword(email, password, function(error){
+      console.log(error);
     });
   }
 });

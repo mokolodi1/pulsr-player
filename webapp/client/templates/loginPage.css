@@ -45,8 +45,12 @@ h1 {
 }
 
 .background-video {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: auto;
 	z-index: -1;
+}
+
+form.login-form {
+	color:black;
 }

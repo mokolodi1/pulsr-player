@@ -96,9 +96,8 @@ Meteor.methods({
   nextTrack: function (roomID) {
     checkLoggedIn(Meteor.userId());
 
-    Songs.update(Rooms.findOne(roomID).current_song_id, {
-      $set: { "played": true }
-    });
+    console.log("nextTrack called; userId:", Meteor.userId());
+
 		var newCurrentSong = Songs.findOne({
           room_id: roomID, played: false
         }, {
@@ -111,13 +110,19 @@ Meteor.methods({
         has_started_playing: true,
 			}});
 			Songs.update(newCurrentSong._id, {"$set": {played: true}});
-		}
+		} else { // no more songs left in the thingy
+      Rooms.update(roomID, {
+        $set: {
+          has_started_playing: false,
+        }
+      });
+    }
 	},
   addSong: function (searchObject, room_id) {
     var currentUserId = Meteor.userId();
     checkLoggedIn(currentUserId);
 
-    console.log("searchObject: ", searchObject);
+    //console.log("searchObject: ", searchObject);
 
     Songs.insert({
       "room_id": room_id,
