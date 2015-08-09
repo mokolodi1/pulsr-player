@@ -43,9 +43,6 @@ Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
 	},
-	votingSongs: function () {
-		return Songs.find({played: false});
-	},
 });
 
 Template.searchResult.events({

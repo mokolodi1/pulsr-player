@@ -62,7 +62,7 @@ Router.map(function() {
                 "room_id": currentRoom._id,
                 "played": false,
               }, {
-                sort: {"like_score": -1, "added_time": 1}
+                sort: {"like_score": -1, /*"added_time": 1*/}
               }),
         };
       } else {

@@ -42,7 +42,7 @@
   <!--INSERTING THE PLAYLIST TEMPLATE -->
   <div id="songsList" class="songsListContainer">
     <div class="searchResultsList">
-      {{#each votingSongs}}
+      {{#each songs}}
           {{> songItem}}
       {{/each}}
     </div>
@@ -56,11 +56,11 @@
     <div class="playlistItem">
       <div class="scoreWidget">
         <div>
-          <i class="voteButton fa fa-thumbs-up"></i>
+          <i class="voteButton fa fa-thumbs-up upvote"></i>
         </div>
         <div><span>{{like_score}}</span></div>
         <div>
-          <i class="voteButton fa fa-thumbs-down"></i>
+          <i class="voteButton fa fa-thumbs-down downvote"></i>
         </div>
       </div>
 
