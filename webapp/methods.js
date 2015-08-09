@@ -103,7 +103,8 @@ Meteor.methods({
 		if (newCurrentSong) {
 			Rooms.update(roomID, {"$set": {
 				current_song_id: newCurrentSong._id,
-				current_song_started: new Date()
+				current_song_started: new Date(),
+        has_started_playing: true,
 			}});
 			Songs.update(newCurrentSong._id, {"$set": {played: true}});
 		}
@@ -111,8 +112,6 @@ Meteor.methods({
   addSong: function (searchObject, room_id) {
     var currentUserId = Meteor.userId();
     checkLoggedIn(currentUserId);
-
-    console.log("searchObject: ", searchObject);
 
     Songs.insert({
       "room_id": room_id,

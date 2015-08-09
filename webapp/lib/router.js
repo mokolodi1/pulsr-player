@@ -54,7 +54,7 @@ Router.map(function() {
       // TODO: if room doesn't exist...
 
       var currentRoom = Rooms.findOne({"name": this.params.roomName});
-      console.log("currentRoom: ", currentRoom);
+      //console.log("currentRoom: ", currentRoom);
       if (currentRoom) {
         return {
           "room": currentRoom,

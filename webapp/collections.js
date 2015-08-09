@@ -7,6 +7,7 @@ var roomsSchema = new SimpleSchema({
   },
   "current_song_id": { type: Meteor.ObjectID, optional: true },
   "current_song_started": { type: Date, optional: true },
+  "has_started_playing": { type: Boolean, defaultValue: false },
 });
 
 var songsSchema = new SimpleSchema({
