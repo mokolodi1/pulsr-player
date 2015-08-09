@@ -9,13 +9,9 @@ var roomsSchema = new SimpleSchema({
   "current_song_started": { type: Date, optional: true },
 });
 
-function blankArray() {
-  return [];
-}
-
 var songsSchema = new SimpleSchema({
 	"room_id": { type: Meteor.ObjectID },
-	"name": { type: String },
+	"title": { type: String }, // aka title
 	"video_id": { type: String },
 	"added_by_user_id": { type: Meteor.ObjectID },
 	"added_time": { type: Date },
@@ -23,6 +19,8 @@ var songsSchema = new SimpleSchema({
 		type: Boolean,
 		defaultValue: false,
 	},
+  "thumbnail": { type: String },
+  "channelTitle": { type: String },
 
   // users can only vote once for a song
   // users can only be in one of these lists

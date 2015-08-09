@@ -4,7 +4,7 @@ numberWithCommas = function(x) {
     while (pattern.test(x))
         x = x.replace(pattern, "$1,$2");
     return x;
-}
+};
 
 Template.room.onCreated(function() {
 
@@ -29,8 +29,7 @@ Template.room.onCreated(function() {
 					yt.player.loadVideoById(yt_id, startSeconds);
 					yt.player.addEventListener('onStateChange', function(e) {
 						if (e.data == YT.PlayerState.ENDED) {
-							Songs.remove(songID);
-							Meteor.call('setCurrentSong', instance.data.room._id);
+							Meteor.call('nextTrack', instance.data.room._id);
 						}
 					});
 					instance.currentlyPlayingSong.set(songID);
@@ -50,7 +49,7 @@ Template.room.helpers({
 });
 
 Template.searchResult.events({
-	'click .listItem': function(event, instance) {
+	'click .searchListItem': function(event, instance) {
 		event.preventDefault();
 		Meteor.call("addSong", instance.data,
 				instance.parentTemplate(1).data.room._id);
@@ -65,7 +64,7 @@ Template.room.helpers({
 
 Template.room.events({
 	"click #startButton": function(event, instance) {
-		Meteor.call('setCurrentSong', instance.data.room._id);
+		Meteor.call('nextTrack', instance.data.room._id);
 	},
 	'click .searchButton': function() {
 		window.searchSongs();
