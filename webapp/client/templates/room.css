@@ -149,9 +149,13 @@
 	margin-top: 10px;
 }
 
+.listInfoBottom span:first-child {
+	margin-left: 10px;
+}
+
 .listThumbnail {
 	float: left;
-	width: 10%;
+	width: 15%;
 	vertical-align: middle;
 }
 
@@ -165,7 +169,12 @@
 
 .listInfo h3{
 	margin: 0;
+	margin-left: 10px;
 	font-weight: normal;
+}
+
+.listInfo h4{
+	margin-left: 10px;
 }
 
 
