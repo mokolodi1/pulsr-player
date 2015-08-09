@@ -31,6 +31,7 @@ Router.map(function() {
   this.route('dashboard', {
     path: '/',
     subscriptions: function () {
+      Meteor.subscribe('userPresence');
       return Meteor.subscribe("allRooms", function () {
         console.log("loaded allRooms subscription");
       });
@@ -46,6 +47,7 @@ Router.map(function() {
       console.log("onWait method");
     },
     subscriptions: function () {
+      Meteor.subscribe('userPresence');
       return Meteor.subscribe("singleRoom",
         this.params.roomName,
         function () {
@@ -61,6 +63,9 @@ Router.map(function() {
       var currentRoom = Rooms.findOne({"name": this.params.roomName});
       //console.log("currentRoom: ", currentRoom);
       if (currentRoom) {
+        // Used to track the users currently in a room
+        Session.set('currentRoomId', currentRoom._id);
+
         return {
           "room": currentRoom,
           "songs": Songs.find({

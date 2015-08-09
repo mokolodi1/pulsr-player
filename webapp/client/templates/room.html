@@ -61,6 +61,8 @@
       {{/each}}
     </div>
   </div>
+
+  {{> usersBars}}
 </template>
 
 <!-- PLAYLIST TEMPLATE DESCRIPTION-->
@@ -109,5 +111,18 @@
         </div>
       </div>
     </div>
+  </div>
+</template>
+
+<template name="usersBars">
+  <div class="users-bar users-bar-left">
+    {{#each usersInRoomEven}}
+      <img src="{{state.profilePicture}}" width="50" height="50" alt="{{state.firstName}} {{state.lastName}}" title="{{state.firstName}} {{state.lastName}}" />
+    {{/each}}
+  </div>
+  <div class="users-bar users-bar-right">
+    {{#each usersInRoomOdd}}
+      <img src="{{state.profilePicture}}" width="50" height="50" alt="{{state.firstName}} {{state.lastName}}" title="{{state.firstName}} {{state.lastName}}" />
+    {{/each}}
   </div>
 </template>

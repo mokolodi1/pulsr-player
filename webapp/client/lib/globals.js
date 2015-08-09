@@ -18,3 +18,17 @@ Blaze.TemplateInstance.prototype.parentTemplate = function (levels) {
     view = view.parentView;
   }
 };
+
+// Setup the user presence state function on the client
+Presence.state = function() {
+  var state = {
+    currentRoomId: Session.get('currentRoomId')
+  };
+
+  if (Meteor.user()) {
+    state.firstName = Meteor.user().profile.firstName;
+    state.lastName = Meteor.user().profile.lastName;
+    state.profilePicture = Meteor.user().profile.profilePicture;
+  }
+  return state;
+};

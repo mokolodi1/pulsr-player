@@ -269,6 +269,29 @@
 	color: purple;
 }
 
+.users-bar {
+	position: absolute;
+	top: 131px;
+	height: 358px;
+	padding: 5px;
+	overflow-y: scroll;
+}
+
+.users-bar > img {
+	display: block;
+	margin-bottom: 10px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
+
+.users-bar-left {
+	left: 0;
+}
+
+.users-bar-right {
+	right: 0;
+}
+
 @media only screen and (max-device-width: 480px) {
 
 	.headerContainer {
@@ -305,3 +328,4 @@
 		visibility: hidden;
 	}
 }
+

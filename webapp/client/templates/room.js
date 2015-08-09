@@ -125,3 +125,28 @@ Template.songItem.helpers({
 		}
 	},
 });
+
+Template.usersBars.helpers({
+	"usersInRoomEven": function() {
+		var users = [];
+		var i = 0;
+		Presences.find({'state.currentRoomId': Session.get('currentRoomId')}).forEach(function(user) {
+			if (i % 2 === 0) {
+				users.push(user);
+			}
+			i++;
+		});
+		return users;
+	},
+	"usersInRoomOdd": function() {
+		var users = [];
+		var i = 0;
+		Presences.find({'state.currentRoomId': Session.get('currentRoomId')}).forEach(function(user) {
+			if (i % 2 === 1) {
+				users.push(user);
+			}
+			i++;
+		});
+		return users;
+	}
+});
