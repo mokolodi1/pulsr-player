@@ -28,9 +28,6 @@ Template.room.helpers({
 	searchResults: function () {
 		return searchResults.get();
 	},
-	likeSum: function () {
-		return this.like_count + this.dislike_count;
-	},
 });
 
 Template.searchResult.events({
@@ -50,5 +47,14 @@ Template.room.events({
 		if (event.keyCode == 13) {
 			window.searchSongs();
 		}
-	}
+	},
+});
+
+Template.songItem.events({
+	'click .upvote': function (event, instance) {
+		Meteor.call("upvote", instance.data._id);
+	},
+	'click .downvote': function (event, instance) {
+		Meteor.call("downvote", instance.data._id);
+	},
 });
