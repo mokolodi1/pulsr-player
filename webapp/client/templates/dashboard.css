@@ -1,13 +1,15 @@
 #dashboard_header {
+	margin: 0;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	text-align: center;
 	color: white;
-	margin: 0;
 }
 
 #logout-box {
 	position: absolute;
-	top: 5px;
-	right: 10px;
+	top: 15px;
+	right: 15px;
 	color: white;
 }
 

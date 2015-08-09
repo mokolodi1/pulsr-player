@@ -73,7 +73,7 @@ Template.room.events({
 	"click #startButton": function(event, instance) {
 		Meteor.call('nextTrack', instance.data.room._id);
 	},
-	'click .searchButton': function() {
+	'click .searchButtonWidget': function() {
 		window.searchSongs();
 	},
 	'keypress .searchBar': function(event) {
