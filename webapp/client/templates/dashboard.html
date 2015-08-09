@@ -38,8 +38,9 @@
 	<div class="outer_box">
 		<div class="room_box">
 			{{#if hasClicked}}
-				<input type="text" name="new_room_name" id="new_room_name" placeholder="New Room Name">
-				<button id="add-room-button" type="submit">Add room</button>
+				<div class="room-box-edit">
+					<input type="text" id="new_room_name" placeholder="Name" />
+				</div>
 			{{else}}
 				<p id="add_icon" class="room_text">+</p>
 			{{/if}}
