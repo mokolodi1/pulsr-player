@@ -24,6 +24,7 @@
 
 .playerContainer {
 	margin-top: 40px;
+	pointer-events: none;
 }
 
 .startButton {
